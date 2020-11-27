@@ -1,0 +1,91 @@
+<template>
+  <div class="login">
+    <div>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters">
+          <div class="col-lg-12">
+            <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
+              <div class="w-100">
+                <div class="row justify-content-center">
+                  <div class="col-lg-3">
+                    <div>
+                      <div class="text-center">
+                        <div>
+                          <a href="index.html" class="logo"><img src="../assets/qicaiKing.png" height="200" alt="这是我们的master，七彩氪金之王"></a>
+                        </div>
+
+                        <h4 class="font-size-18 mt-4">快找个地方随便坐 !</h4>
+                        <p class="text-muted">你能找到算我输</p>
+                      </div>
+
+                      <div class="p-2 mt-5">
+                        <form class="form-horizontal" action="index.html">
+
+                          <div class="form-group auth-form-group-custom mb-4">
+                            <i class="ri-user-2-line auti-custom-input-icon"></i>
+                            <label for="username">用户名</label>
+                            <input type="text" class="form-control" id="username" placeholder="把你注册的名给写上">
+                          </div>
+
+                          <div class="form-group auth-form-group-custom mb-4">
+                            <i class="ri-lock-2-line auti-custom-input-icon"></i>
+                            <label for="userpassword">密码</label>
+                            <input type="password" class="form-control" id="userpassword" placeholder="これは Your Secret">
+                          </div>
+
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline">
+                            <label class="custom-control-label" for="customControlInline">记住我</label>
+                          </div>
+
+                          <div class="mt-4 text-center">
+                            <button class="btn btn-primary w-md waves-effect waves-light" type="button" @click="yinjianWay">通往阴间的大门</button>
+                          </div>
+
+                          <div class="mt-4 text-center">
+                            <a href="auth-recoverpw.html" class="text-muted"><i class="mdi mdi-lock mr-1"></i> 密码给忘了?</a>
+                          </div>
+                        </form>
+                      </div>
+
+                      <div class="mt-5 text-center">
+                        <p>四不四没有号 ? <a class="font-weight-medium text-primary"> 在这块旯注册 </a> </p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'login',
+  data() {
+    return {
+      loginForm: {
+        username: 'test',
+        password: '123456'
+      }
+    }
+  },
+  methods: {
+    yinjianWay(){
+      console.log(111)
+      this.$router.push('/main');
+    }
+  },
+  mounted() {
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
