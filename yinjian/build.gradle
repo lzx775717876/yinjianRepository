@@ -34,3 +34,66 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+configurations {//新建功能插件配置名称
+
+	mybatisGenerator
+}
+
+/** Mybatis model mapper 生成工具 */
+'org.mybatis.generator:mybatis-generator-core:1.3.2'
+
+'tk.mybatis:mapper:3.3.2'
+
+/** 读取config文件夹中对应的配置文件 */
+ext{
+	def prop = new Properties();
+	file("src/main/resources/mybatis/generator/jdbc-mysql.properties").withInputStream {prop.load(it) }
+	file("src/main/resources/mybatis/generator/gradle.properties").withInputStream { prop.load(it) }
+	prop.each {
+		project.extensions.add("$it.key",it.value)
+	}
+}
+
+
+/** 利用ant创建一个自动生成MyBatis目录文件的task*/
+task mybatisGenerate {
+	doLast {
+		ant.properties['targetProject'] = projectDir.path
+		ant.properties['jarDirection'] = project['jdbc.jarDirection']
+		ant.properties['driverClass'] = project['jdbc.driverClassName']
+		ant.properties['connectionURL'] = project['jdbc.url']
+		ant.properties['userId'] = project['jdbc.user']
+		ant.properties['password'] = project['jdbc.pass']
+		ant.properties['src_main_java'] = sourceSets.main.java.srcDirs[0].path
+		ant.properties['src_main_resources'] = sourceSets.main.resources.srcDirs[0].path
+		ant.properties['modelPackage'] = project['modelPackage']
+		ant.properties['mapperPackage'] = project['mapperPackage']
+		ant.properties['sqlMapperPackage'] = project['sqlMapperPackage']
+
+
+		ant.taskdef(
+				name: 'mbgenerator',
+				classname: 'org.mybatis.generator.ant.GeneratorAntTask',
+				classpath: configurations.mybatisGenerator.asPath
+		)
+
+
+		ant.mbgenerator(overwrite: true,
+				configfile: 'src/main/resources/mybatis/generator/generatorConfig.xml',
+				verbose: true) {
+			propertyset {
+				propertyref(name: 'targetProject')
+				propertyref(name: 'jarDirection')
+				propertyref(name: 'userId')
+				propertyref(name: 'driverClass')
+				propertyref(name: 'connectionURL')
+				propertyref(name: 'password')
+				propertyref(name: 'src_main_java')
+				propertyref(name: 'src_main_resources')
+				propertyref(name: 'modelPackage')
+				propertyref(name: 'mapperPackage')
+				propertyref(name: 'sqlMapperPackage')
+			}
+		}
+	}
+}
