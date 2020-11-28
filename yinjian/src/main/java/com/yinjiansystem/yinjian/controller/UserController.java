@@ -1,5 +1,6 @@
 package com.yinjiansystem.yinjian.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.yinjiansystem.yinjian.pojo.User;
 import com.yinjiansystem.yinjian.service.UserService;
 import org.slf4j.Logger;
@@ -27,12 +28,12 @@ public class UserController {
 
     /**
      * 根据id查询
-     * @param id
+     * @param user
      */
     @GetMapping(value = "/select")
-    public List<User> selectAllById() {
-        List<User> list = userService.selectById();
-        return list;
+    public List<User> selectAllById(Integer pageNum, Integer pageSize,User user) {
+        PageInfo<User> list = userService.selectById(pageNum,pageSize,user);
+        return list.getList();
     }
 
 

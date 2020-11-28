@@ -34,3 +34,8 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+dependencies {
+	compile group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.4'
+
+}

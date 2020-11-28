@@ -1,5 +1,7 @@
 package com.yinjiansystem.yinjian.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yinjiansystem.yinjian.dao.UserMapper;
 import com.yinjiansystem.yinjian.pojo.User;
 import com.yinjiansystem.yinjian.service.TestService;
@@ -21,8 +23,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<User> selectById() {
-        List<User> list = userMapper.selectById();
-        return list;
+    public PageInfo<User> selectById(Integer pageNum, Integer pageSize,User user) {
+        PageHelper.startPage(pageNum, pageSize);
+
+        List<User> list = userMapper.selectById(user);
+        return new PageInfo<>(list);
     }
+
 }

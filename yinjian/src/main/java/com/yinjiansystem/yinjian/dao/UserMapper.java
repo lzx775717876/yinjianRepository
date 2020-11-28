@@ -14,6 +14,6 @@ import java.util.List;
  */
 @Mapper
 public interface UserMapper {
-    List<User> selectById();
+    List<User> selectById(User user);
 
 }

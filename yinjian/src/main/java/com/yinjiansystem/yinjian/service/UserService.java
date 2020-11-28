@@ -1,6 +1,7 @@
 package com.yinjiansystem.yinjian.service;
 
 
+import com.github.pagehelper.PageInfo;
 import com.yinjiansystem.yinjian.pojo.User;
 
 import java.util.List;
@@ -11,6 +12,6 @@ import java.util.List;
  * @Date 2020/11/28
  */
 public interface UserService {
-    List<User> selectById();
+    PageInfo<User> selectById(Integer pageNum, Integer pageSize,User user);
 
 }
