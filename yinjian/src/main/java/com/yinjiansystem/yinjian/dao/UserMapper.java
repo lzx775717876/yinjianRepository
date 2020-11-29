@@ -2,7 +2,7 @@ package com.yinjiansystem.yinjian.dao;
 
 import com.yinjiansystem.yinjian.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+
 
 
 import java.util.List;
@@ -14,6 +14,28 @@ import java.util.List;
  */
 @Mapper
 public interface UserMapper {
+    /**
+     * 分页查询
+     * @param user
+     * */
     List<User> selectById(User user);
+
+    /**
+     * 插入
+     * @param user
+     * */
+    int insertUser(User user);
+
+    /**
+     * 更新
+     * @param user
+     */
+    int updateUser(User user);
+
+    /**
+     * 批量删除
+     * @param ids
+     */
+    int deleteByIds(String[] ids);
 
 }

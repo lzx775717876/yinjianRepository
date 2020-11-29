@@ -17,7 +17,7 @@ import java.util.List;
  * @Date 2020/11/27
  */
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
 
     private static final String JSON = "application/json;charset=UTF-8";
@@ -27,7 +27,7 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 根据id查询
+     * 分页查询
      * @param user
      */
     @GetMapping(value = "/select")
@@ -35,6 +35,37 @@ public class UserController {
         PageInfo<User> list = userService.selectById(pageNum,pageSize,user);
         return list.getList();
     }
+
+    /**
+     * 添加
+     * @param user
+     */
+    @PostMapping(value = "/insert")
+    public int insert(@RequestBody User user){
+        int result = userService.insertUser(user);
+        return result;
+    }
+
+    /**
+     * 添加
+     * @param user
+     */
+    @PostMapping(value = "/update")
+    public int update(@RequestBody User user){
+        int result = userService.updateUser(user);
+        return result;
+    }
+
+    /**
+     * 根据多文件ID的数组删除对应的附件记录
+     *
+     */
+    @PostMapping(value = "/deleteByIds")
+    public int deleteByIds(@RequestParam(value = "ids") String ids){
+        int result = userService.deleteByIds(ids);
+        return result;
+    }
+
 
 
 }

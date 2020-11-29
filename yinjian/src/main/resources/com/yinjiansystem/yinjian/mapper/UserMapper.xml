@@ -36,4 +36,31 @@
 
 	</select>
 
+    <!-- 新增User -->
+    <insert id="insertUser" parameterType="com.yinjiansystem.yinjian.pojo.User" >
+        insert into user (id,name,userName,password,type,createTime,updateTime)
+        values (#{id},#{name},#{userName},#{password},#{type},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="updateUser" parameterType="com.yinjiansystem.yinjian.pojo.User" >
+        update user
+        set
+            name = #{name},
+            userName = #{userName},
+            password = #{password},
+            type = #{type},
+            updateTime = #{updateTime}
+        where id = #{id};
+    </update>
+
+    <delete id="deleteByIds" parameterType="String">
+        delete from
+        user
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
 </mapper>
