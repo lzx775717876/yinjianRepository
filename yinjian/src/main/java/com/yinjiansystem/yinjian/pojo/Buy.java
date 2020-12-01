@@ -13,6 +13,9 @@ public class Buy extends BaseModel {
     //游戏名
     private String gameName;
 
+    //氪金类型 0-虚拟 1-实体
+    private Integer type;
+
     //金额
     private String money;
 
@@ -36,6 +39,14 @@ public class Buy extends BaseModel {
 
     public void setGameName(String gameName) {
         this.gameName = gameName;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public String getMoney() {
