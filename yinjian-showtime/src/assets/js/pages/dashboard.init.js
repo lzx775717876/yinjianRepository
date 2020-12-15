@@ -74,27 +74,42 @@ chart.render();
 // donut chart
 
 var options = {
-    series: [42, 26, 15],
-    chart: {
-        height: 230,
-        type: 'donut',
+    series: [105431, 113568, 13524, 19869],
+    labels: ['洪哥', "路西", "拓哥", "阿鸡"],
+    chartOptions: {
+        labels: ['Apple', 'Mango', 'Orange', 'Watermelon']
     },
-    labels: ["Product A", "Product B", "Product C"],
+    chart: {
+        type: 'donut'
+        // type: 'pie'
+    },
+    dataLabels: {
+        enabled: true,
+        formatter: function (val) {
+            return val.toFixed(1) + "%"
+        }
+    },
     plotOptions: {
         pie: {
             donut: {
-                size: '75%'
+                size: '50%',
+                labels: {
+                    show: true,
+                    name: {
+                        show: true
+                    },
+                    value: {
+                        show: true
+                    },
+                    total: {
+                        show: true,
+                        label: '拢共',
+                        color: 'black'
+                    }
+                }
             }
         }
-    },
-    dataLabels: {
-        enabled: false
-    },
-    legend: {
-        show: false,
-    },
-    colors: ['#5664d2', '#1cbb8c', '#eeb902'],
-
+    }
 };
 
 var chart = new ApexCharts(document.querySelector("#donut-chart"), options);
@@ -179,174 +194,3 @@ var radialoptions = {
 
 var radialchart = new ApexCharts(document.querySelector("#radialchart-2"), radialoptions);
 radialchart.render();
-
-
-// sparkline chart
-
-var options = {
-    series: [{
-        data: [23, 32, 27, 38, 27, 32, 27, 34, 26, 31, 28]
-    }],
-    chart: {
-        type: 'line',
-        width: 80,
-        height: 35,
-        sparkline: {
-            enabled: true
-        }
-    },
-    stroke: {
-        width: [3],
-        curve: 'smooth'
-    },
-    colors: ['#5664d2'],
-
-    tooltip: {
-        fixed: {
-            enabled: false
-        },
-        x: {
-            show: false
-        },
-        y: {
-            title: {
-                formatter: function (seriesName) {
-                    return ''
-                }
-            }
-        },
-        marker: {
-            show: false
-        }
-    }
-};
-
-var chart = new ApexCharts(document.querySelector("#spak-chart1"), options);
-chart.render();
-
-
-var options = {
-    series: [{
-        data: [24, 62, 42, 84, 63, 25, 44, 46, 54, 28, 54]
-    }],
-    chart: {
-        type: 'line',
-        width: 80,
-        height: 35,
-        sparkline: {
-            enabled: true
-        }
-    },
-    stroke: {
-        width: [3],
-        curve: 'smooth'
-    },
-    colors: ['#5664d2'],
-    tooltip: {
-        fixed: {
-            enabled: false
-        },
-        x: {
-            show: false
-        },
-        y: {
-            title: {
-                formatter: function (seriesName) {
-                    return ''
-                }
-            }
-        },
-        marker: {
-            show: false
-        }
-    }
-};
-
-var chart = new ApexCharts(document.querySelector("#spak-chart2"), options);
-chart.render();
-
-
-var options = {
-    series: [{
-        data: [42, 31, 42, 34, 46, 38, 44, 36, 42, 32, 54]
-    }],
-    chart: {
-        type: 'line',
-        width: 80,
-        height: 35,
-        sparkline: {
-            enabled: true
-        }
-    },
-    stroke: {
-        width: [3],
-        curve: 'smooth'
-    },
-    colors: ['#5664d2'],
-    tooltip: {
-        fixed: {
-            enabled: false
-        },
-        x: {
-            show: false
-        },
-        y: {
-            title: {
-                formatter: function (seriesName) {
-                    return ''
-                }
-            }
-        },
-        marker: {
-            show: false
-        }
-    }
-};
-
-var chart = new ApexCharts(document.querySelector("#spak-chart3"), options);
-chart.render();
-
-// vectormap
-
-$('#usa-vectormap').vectorMap({
-    map: 'us_merc_en',
-    backgroundColor: 'transparent',
-    regionStyle: {
-        initial: {
-            fill: '#e8ecf4',
-            stroke: '#74788d',
-            'stroke-width': 1,
-            "stroke-opacity": 0.4,
-        }
-    },
-
-});
-
-
-
-// datatable
-$(document).ready(function () {
-    $('.datatable').DataTable({
-        "lengthMenu": [5, 10, 25, 50],
-        "pageLength": 5,
-        "columns": [
-            {'orderable': false},
-            {'orderable': true},
-            {'orderable': true},
-            {'orderable': true},
-            {'orderable': true},
-            {'orderable': true},
-            {'orderable': false}
-        ],
-        "order": [[ 1, "asc" ]],
-        "language": {
-            "paginate": {
-                "previous": "<i class='mdi mdi-chevron-left'>",
-                "next": "<i class='mdi mdi-chevron-right'>"
-            }
-        },
-        "drawCallback": function () {
-            $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-        }
-    });
-});
