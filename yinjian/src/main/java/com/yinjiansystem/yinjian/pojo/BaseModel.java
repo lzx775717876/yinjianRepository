@@ -1,5 +1,7 @@
 package com.yinjiansystem.yinjian.pojo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,10 +10,11 @@ import java.util.Date;
  * @Author DT
  * @Date 2020/11/27
  */
+@Data
 public class BaseModel implements Serializable{
 
 	//主键id
-	private String id;
+	private Long id;
 
 	//创建时间
 	private Date createTime;
@@ -19,27 +22,4 @@ public class BaseModel implements Serializable{
 	//修改时间
 	private Date updateTime;
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
 }

@@ -1,14 +1,17 @@
 package com.yinjiansystem.yinjian.pojo;
 
+import lombok.Data;
+
 /**
  * @Description 氪金记录 实体类
  * @Author DT
  * @Date 2020/11/27
  */
+@Data
 public class Buy extends BaseModel {
 
     //用户id
-    private String userId;
+    private Long userId;
 
     //游戏名
     private String gameName;
@@ -24,52 +27,4 @@ public class Buy extends BaseModel {
 
     //图片地址
     private String photoPath;
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getGameName() {
-        return gameName;
-    }
-
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public String getPhotoPath() {
-        return photoPath;
-    }
-
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
-    }
 }

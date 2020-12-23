@@ -12,7 +12,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @Description 测试 Service层实现类
@@ -39,10 +38,8 @@ public class UserServiceImpl implements UserService {
         Date date = new Date();
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
         try{
-            String id = UUID.randomUUID().toString();
             Date creatTime = dateFormat.parse(dateFormat.format(date));
             Date updateTime = dateFormat.parse(dateFormat.format(date));
-            user.setId(id);
             user.setCreateTime(creatTime);
             user.setUpdateTime(updateTime);
             int result = userMapper.insertUser(user);
