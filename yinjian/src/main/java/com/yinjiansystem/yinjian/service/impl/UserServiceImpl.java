@@ -24,12 +24,17 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Override
+    public User selectByMybatisPlus(long id) {
+        User user = userMapper.selectById(id);
+        return user;
+    }
 
     @Override
     public PageInfo<User> selectById(Integer pageNum, Integer pageSize,User user) {
         PageHelper.startPage(pageNum, pageSize);
 
-        List<User> list = userMapper.selectById(user);
+        List<User> list = userMapper.selectByIdPage(user);
         return new PageInfo<>(list);
     }
 

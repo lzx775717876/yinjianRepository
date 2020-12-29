@@ -1,5 +1,6 @@
 package com.yinjiansystem.yinjian.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.yinjiansystem.yinjian.pojo.User;
 import com.yinjiansystem.yinjian.service.UserService;
@@ -25,6 +26,17 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    /**
+     * mybatisPlus测试用
+     * @param
+     */
+    @GetMapping(value = "/mybatisPlusTest")
+    public String mybatisPlusTest() {
+        User user = userService.selectByMybatisPlus(2);
+        String s = JSONObject.toJSONString(user);
+        return s;
+    }
 
     /**
      * 分页查询

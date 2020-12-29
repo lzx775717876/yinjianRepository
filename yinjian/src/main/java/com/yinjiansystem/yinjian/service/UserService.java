@@ -34,4 +34,10 @@ public interface UserService {
      * @param ids
      */
     int deleteByIds(String ids);
+
+	/**
+     * mybatisplus查询测试
+     * @param id
+     */
+    User selectByMybatisPlus(long id);
 }
