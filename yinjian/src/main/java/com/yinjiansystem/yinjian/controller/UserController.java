@@ -1,14 +1,13 @@
 package com.yinjiansystem.yinjian.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yinjiansystem.yinjian.pojo.User;
 import com.yinjiansystem.yinjian.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 /**
@@ -42,9 +41,9 @@ public class UserController {
      * @param user
      */
     @GetMapping(value = "/select")
-    public List<User> selectAllById(Integer pageNum, Integer pageSize,User user) {
-        List<User> list = userService.selectById(pageNum,pageSize,user);
-        return list;
+    public IPage<User> selectAllById(Integer pageNum, Integer pageSize, User user) {
+        IPage<User> page = userService.selectById(pageNum,pageSize,user);
+        return page;
     }
 
     /**

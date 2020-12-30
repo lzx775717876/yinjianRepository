@@ -15,28 +15,5 @@ import java.util.List;
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
-//    /**
-//     * 分页查询
-//     * @param user
-//     * */
-//    List<User> selectByIdPage(User user);
-//
-//    /**
-//     * 插入
-//     * @param user
-//     * */
-//    int insertUser(User user);
-//
-//    /**
-//     * 更新
-//     * @param user
-//     */
-//    int updateUser(User user);
-//
-//    /**
-//     * 批量删除
-//     * @param ids
-//     */
-//    int deleteByIds(String[] ids);
 
 }

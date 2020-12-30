@@ -34,11 +34,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> selectById(Integer pageNum, Integer pageSize,User user) {
+    public IPage<User> selectById(Integer pageNum, Integer pageSize,User user) {
         IPage<User> userPage = new Page<>(pageNum, pageSize);
         userPage = userMapper.selectPage(userPage, null);
-        List<User> list = userPage.getRecords();
-        return list;
+        return userPage;
     }
 
     @Override
