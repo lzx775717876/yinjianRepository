@@ -1,6 +1,7 @@
 package com.yinjiansystem.yinjian.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.yinjiansystem.yinjian.pojo.BaseResult;
 import com.yinjiansystem.yinjian.pojo.User;
 import com.yinjiansystem.yinjian.service.UserService;
 import com.yinjiansystem.yinjian.utils.Constant;
@@ -12,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
 /**
  * @Description 用户 Controller层
  * @Author HCX + DT
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/user")
-@Api(value = "阴间用户", tags = { "阴间用户" })
+@Api(value = "阴间用户模块", tags = { "阴间用户模块" })
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -30,40 +30,48 @@ public class UserController {
 
     @ApiOperation(value = "分页查询", notes = "分页查询")
     @RequestMapping(value = "/selectPage", produces = Constant.PRODUCES_JSON, method = RequestMethod.GET)
-    public IPage<User> selectPage(
+    public BaseResult<IPage<User>> selectPage(
             @ApiParam(value = "页数", required = true) @PathVariable(value = "pageIndex",required = true) Integer pageIndex,
-            @ApiParam(value = "展示数量", required = true) @PathVariable(value = "pageSize",required = true) Integer pageSize,
-            @ApiParam(value = "用户信息", required = false) @RequestParam(value = "user", required = false) User user
+            @ApiParam(value = "每页展示数量", required = true) @PathVariable(value = "pageSize",required = true) Integer pageSize,
+            @ApiParam(value = "用户信息", required = false) @RequestBody(required = false) User user
     ) {
-        IPage<User> page = userService.selectById(pageIndex,pageSize,user);
-        return page;
+        BaseResult<IPage<User>> br = new BaseResult<>();
+        IPage<User> page = userService.selectPage(pageIndex,pageSize,user);
+        br.setData(page);
+        return br;
     }
 
     @ApiOperation(value = "新增用户", notes = "新增用户")
     @RequestMapping(value = "/insertUser", produces = Constant.PRODUCES_JSON, method = RequestMethod.POST)
-    public int insertUser(
-            @ApiParam(value = "用户信息", required = false) @RequestParam(value = "user", required = false) User user
+    public BaseResult<String> insertUser(
+            @ApiParam(value = "用户信息", required = false) @RequestBody(required = false) User user
     ) {
+        BaseResult<String> br = new BaseResult<>();
         int result = userService.insertUser(user);
-        return result;
+        br.setSuccess(result == 1);
+        return br;
     }
 
     @ApiOperation(value = "修改用户", notes = "修改用户")
     @RequestMapping(value = "/updateUser", produces = Constant.PRODUCES_JSON, method = RequestMethod.PUT)
-    public int updateUser(
-            @ApiParam(value = "用户信息", required = false) @RequestParam(value = "user", required = false) User user
+    public BaseResult<String> updateUser(
+            @ApiParam(value = "用户信息", required = false) @RequestBody(required = false) User user
     ) {
+        BaseResult<String> br = new BaseResult<>();
         int result = userService.updateUser(user);
-        return result;
+        br.setSuccess(result == 1);
+        return br;
     }
 
     @ApiOperation(value = "删除用户", notes = "删除用户")
     @RequestMapping(value = "/updateUser", produces = Constant.PRODUCES_JSON, method = RequestMethod.DELETE)
-    public int updateUser(
-            @ApiParam(value = "用户id", required = true) @RequestParam(value = "id", required = true) Long id
+    public BaseResult<String> updateUser(
+            @ApiParam(value = "用户id", required = true) @RequestBody(required = true) Long id
     ) {
+        BaseResult<String> br = new BaseResult<>();
         int result = userService.deleteById(id);
-        return result;
+        br.setSuccess(result == 1);
+        return br;
     }
 
 }

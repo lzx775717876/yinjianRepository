@@ -3,6 +3,7 @@ package com.yinjiansystem.yinjian.pojo;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @Description 氪金记录 实体类
@@ -10,6 +11,7 @@ import lombok.Data;
  * @Date 2020/11/27
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @TableName(value = "buy")
 public class Buy extends BaseModel {
 

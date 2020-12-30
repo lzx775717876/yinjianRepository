@@ -16,25 +16,31 @@ import java.util.List;
 public interface UserService {
     /**
      * 分页查询
-     * @param user
-     * */
-    IPage<User> selectById(Integer pageNum, Integer pageSize, User user);
+     * @param pageNum 页数
+     * @param pageSize 每页展示数量
+     * @param user 用户信息
+     * @return
+     */
+    IPage<User> selectPage(Integer pageNum, Integer pageSize, User user);
 
     /**
-     * 插入
-     * @param user
-     * */
+     * 新增用户
+     * @param user 用户信息
+     * @return
+     */
     int insertUser(User user);
 
     /**
-     * 更新
-     * @param user
+     * 修改用户
+     * @param user 用户信息
+     * @return
      */
     int updateUser(User user);
 
     /**
-     * 删除
-     * @param id
+     * 删除用户
+     * @param id 用户id
+     * @return
      */
     int deleteById(Long id);
 
