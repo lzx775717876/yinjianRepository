@@ -1,7 +1,6 @@
 package com.yinjiansystem.yinjian.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageInfo;
 import com.yinjiansystem.yinjian.pojo.User;
 import com.yinjiansystem.yinjian.service.UserService;
 import org.slf4j.Logger;
@@ -44,8 +43,8 @@ public class UserController {
      */
     @GetMapping(value = "/select")
     public List<User> selectAllById(Integer pageNum, Integer pageSize,User user) {
-        PageInfo<User> list = userService.selectById(pageNum,pageSize,user);
-        return list.getList();
+        List<User> list = userService.selectById(pageNum,pageSize,user);
+        return list;
     }
 
     /**
@@ -73,8 +72,8 @@ public class UserController {
      *
      */
     @PostMapping(value = "/deleteByIds")
-    public int deleteByIds(@RequestParam(value = "ids") String ids){
-        int result = userService.deleteByIds(ids);
+    public int deleteByIds(@RequestParam(value = "ids") Long id){
+        int result = userService.deleteById(id);
         return result;
     }
 

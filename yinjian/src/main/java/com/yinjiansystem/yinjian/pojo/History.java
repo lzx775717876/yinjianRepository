@@ -1,5 +1,6 @@
 package com.yinjiansystem.yinjian.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
@@ -8,6 +9,7 @@ import lombok.Data;
  * @Date 2020/12/23
  */
 @Data
+@TableName(value = "history")
 public class History extends BaseModel {
 
     //标题

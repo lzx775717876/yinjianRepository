@@ -1,5 +1,7 @@
 package com.yinjiansystem.yinjian.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yinjiansystem.yinjian.dao.UserMapper;
@@ -8,6 +10,7 @@ import com.yinjiansystem.yinjian.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Wrapper;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +23,7 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    private static final java.util.UUID UUID = null;
+
     @Autowired
     private UserMapper userMapper;
 
@@ -31,11 +34,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageInfo<User> selectById(Integer pageNum, Integer pageSize,User user) {
-        PageHelper.startPage(pageNum, pageSize);
-
-        List<User> list = userMapper.selectByIdPage(user);
-        return new PageInfo<>(list);
+    public List<User> selectById(Integer pageNum, Integer pageSize,User user) {
+        IPage<User> userPage = new Page<>(pageNum, pageSize);
+        userPage = userMapper.selectPage(userPage, null);
+        List<User> list = userPage.getRecords();
+        return list;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class UserServiceImpl implements UserService {
             Date updateTime = dateFormat.parse(dateFormat.format(date));
             user.setCreateTime(creatTime);
             user.setUpdateTime(updateTime);
-            int result = userMapper.insertUser(user);
+            int result = userMapper.insert(user);
             return result;
         }catch (ParseException e) {
             e.printStackTrace();
@@ -62,7 +65,7 @@ public class UserServiceImpl implements UserService {
         try{
             Date updateTime = dateFormat.parse(dateFormat.format(date));
             user.setUpdateTime(updateTime);
-            int result = userMapper.updateUser(user);
+            int result = userMapper.updateById(user);
             return result;
         }catch (ParseException e) {
             e.printStackTrace();
@@ -71,9 +74,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int deleteByIds(String ids) {
-        String[] idArr = ids.split(",");
-        return userMapper.deleteByIds(idArr);
+    public int deleteById(Long id) {
+        return userMapper.deleteById(id);
     }
 
 }
