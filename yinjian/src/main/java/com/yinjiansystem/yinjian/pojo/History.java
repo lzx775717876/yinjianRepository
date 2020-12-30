@@ -1,6 +1,7 @@
 package com.yinjiansystem.yinjian.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -12,10 +13,10 @@ import lombok.Data;
 @TableName(value = "history")
 public class History extends BaseModel {
 
-    //标题
+    @ApiModelProperty(value = "标题")
     private String title;
 
-    //历史信息
+    @ApiModelProperty(value = "历史信息")
     private String message;
 
 }

@@ -9,8 +9,8 @@ import java.util.List;
 
 
 /**
- * @Description  Service层
- * @Author HCX
+ * @Description 用户 Service层
+ * @Author HCX + DT
  * @Date 2020/11/28
  */
 public interface UserService {
@@ -38,9 +38,4 @@ public interface UserService {
      */
     int deleteById(Long id);
 
-	/**
-     * mybatisplus查询测试
-     * @param id
-     */
-    User selectByMybatisPlus(long id);
 }

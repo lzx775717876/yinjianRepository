@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * @Description 测试 Service层实现类
- * @Author HCX
+ * @Author HCX + DT
  * @Date 2020/11/28
  */
 @Service
@@ -26,12 +26,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
-
-    @Override
-    public User selectByMybatisPlus(long id) {
-        User user = userMapper.selectById(id);
-        return user;
-    }
 
     @Override
     public IPage<User> selectById(Integer pageNum, Integer pageSize,User user) {

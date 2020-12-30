@@ -1,6 +1,7 @@
 package com.yinjiansystem.yinjian.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -12,21 +13,21 @@ import lombok.Data;
 @TableName(value = "buy")
 public class Buy extends BaseModel {
 
-    //用户id
+    @ApiModelProperty(value = "用户id")
     private Long userId;
 
-    //游戏名
+    @ApiModelProperty(value = "游戏名")
     private String gameName;
 
-    //氪金类型 0-虚拟 1-实体
+    @ApiModelProperty(value = "氪金类型 0-虚拟 1-实体")
     private Integer type;
 
-    //金额
+    @ApiModelProperty(value = "金额")
     private String money;
 
-    //备注
+    @ApiModelProperty(value = "备注")
     private String remark;
 
-    //图片地址
+    @ApiModelProperty(value = "图片地址")
     private String photoPath;
 }

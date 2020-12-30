@@ -1,6 +1,7 @@
 package com.yinjiansystem.yinjian.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -12,16 +13,16 @@ import lombok.Data;
 @TableName(value = "user")
 public class User extends BaseModel {
 
-    //姓名
+    @ApiModelProperty(value = "姓名")
     private String name;
 
-    //用户名
+    @ApiModelProperty(value = "用户名")
     private String userName;
 
-    //密码
+    @ApiModelProperty(value = "密码")
     private String password;
 
-    //用户类型
+    @ApiModelProperty(value = "用户类型")
     private Integer type;
 
 }
