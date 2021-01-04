@@ -15,14 +15,17 @@ import lombok.EqualsAndHashCode;
 @TableName(value = "buy")
 public class Buy extends BaseModel {
 
-    @ApiModelProperty(value = "用户id")
-    private Long userId;
+    @ApiModelProperty(value = "用户名")
+    private String userName;
 
     @ApiModelProperty(value = "游戏名")
     private String gameName;
 
     @ApiModelProperty(value = "氪金类型 0-虚拟 1-实体")
     private Integer type;
+
+    @ApiModelProperty(value = "是否退款 0-未退款 1-退款")
+    private Integer refund;
 
     @ApiModelProperty(value = "金额")
     private String money;

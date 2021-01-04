@@ -13,10 +13,14 @@ public interface BuyService {
      * 分页查询
      * @param pageNum 页数
      * @param pageSize 每页展示数量
-     * @param buy 用户信息
+     * @param userName
+     * @param gameName
+     * @param type
+     * @param dateFrom
+     * @param dateTo
      * @return
      */
-    IPage<Buy> selectPage(Integer pageNum, Integer pageSize, Buy buy);
+    IPage<Buy> selectPage(Integer pageNum, Integer pageSize, String userName, String gameName, Integer type, String dateFrom, String dateTo);
 
     /**
      * 新增用户

@@ -1,14 +1,15 @@
 package com.yinjiansystem.yinjian.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yinjiansystem.yinjian.dao.BuyMapper;
-import com.yinjiansystem.yinjian.dao.UserMapper;
-import com.yinjiansystem.yinjian.pojo.Buy;
 import com.yinjiansystem.yinjian.pojo.Buy;
 import com.yinjiansystem.yinjian.service.BuyService;
+import com.yinjiansystem.yinjian.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
@@ -24,9 +25,25 @@ public class BuyServiceImpl implements BuyService {
     private BuyMapper buyMapper;
 
     @Override
-    public IPage<Buy> selectPage(Integer pageNum, Integer pageSize, Buy buy) {
+    public IPage<Buy> selectPage(Integer pageNum, Integer pageSize, String userName, String gameName, Integer type, String dateFrom, String dateTo) {
         IPage<Buy> buyPage = new Page<>(pageNum, pageSize);
-        return buyMapper.selectPage(buyPage, null);
+        QueryWrapper<Buy> query = new QueryWrapper<>();
+        if (!Utils.stringEmptyOrNull(userName)){
+            query.like("userName",userName);
+        }
+        if (!Utils.stringEmptyOrNull(gameName)){
+            query.like("gameName",gameName);
+        }
+        if (type != null){
+            query.eq("type",type);
+        }
+        if (!Utils.stringEmptyOrNull(dateFrom)){
+            query.ge("dateFrom",dateFrom);
+        }
+        if (!Utils.stringEmptyOrNull(dateTo)){
+            query.le("dateTo",dateTo);
+        }
+        return buyMapper.selectPage(buyPage, query);
     }
 
     @Override
