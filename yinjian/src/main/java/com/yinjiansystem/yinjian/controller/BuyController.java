@@ -28,11 +28,11 @@ public class BuyController {
     @ApiOperation(value = "分页查询", notes = "分页查询")
     @RequestMapping(value = "/selectPage", produces = Constant.PRODUCES_JSON, method = RequestMethod.GET)
     public BaseResult<IPage<Buy>> selectPage(
-            @ApiParam(value = "页数", required = true) @PathVariable(value = "pageIndex",required = true) Integer pageIndex,
-            @ApiParam(value = "每页展示数量", required = true) @PathVariable(value = "pageSize",required = true) Integer pageSize,
-            @ApiParam(value = "用户名", required = false) @PathVariable(value = "userName",required = false) String userName,
-            @ApiParam(value = "游戏名", required = false) @PathVariable(value = "gameName",required = false) String gameName,
-            @ApiParam(value = "氪金类型 0-虚拟 1-实体", required = false) @PathVariable(value = "type",required = false) Integer type,
+            @ApiParam(value = "页数", required = true) @RequestParam(value = "pageIndex",required = true) Integer pageIndex,
+            @ApiParam(value = "每页展示数量", required = true) @RequestParam(value = "pageSize",required = true) Integer pageSize,
+            @ApiParam(value = "用户名", required = false) @RequestParam(value = "userName",required = false) String userName,
+            @ApiParam(value = "游戏名", required = false) @RequestParam(value = "gameName",required = false) String gameName,
+            @ApiParam(value = "氪金类型 0-虚拟 1-实体", required = false) @RequestParam(value = "type",required = false) Integer type,
             @DateValue(format = "yyyy-mm-dd hh:mm:ss") @ApiParam(value = "起始日期 2012-12-21 00:00:00", required = false)
             @RequestParam(value = "dateFrom", required = false) String dateFrom,
             @DateValue(format = "yyyy-mm-dd hh:mm:ss") @ApiParam(value = "结束日期 2012-12-21 00:00:00", required = false)

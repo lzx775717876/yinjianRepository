@@ -2,8 +2,6 @@ package com.yinjiansystem.yinjian.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.yinjiansystem.yinjian.dao.UserMapper;
 import com.yinjiansystem.yinjian.pojo.User;
 import com.yinjiansystem.yinjian.service.UserService;
@@ -24,7 +22,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public IPage<User> selectPage(Integer pageNum, Integer pageSize,User user) {
+    public IPage<User> selectPage(Integer pageNum, Integer pageSize) {
         IPage<User> userPage = new Page<>(pageNum, pageSize);
         return userMapper.selectPage(userPage, null);
     }

@@ -31,12 +31,11 @@ public class UserController {
     @ApiOperation(value = "分页查询", notes = "分页查询")
     @RequestMapping(value = "/selectPage", produces = Constant.PRODUCES_JSON, method = RequestMethod.GET)
     public BaseResult<IPage<User>> selectPage(
-            @ApiParam(value = "页数", required = true) @PathVariable(value = "pageIndex",required = true) Integer pageIndex,
-            @ApiParam(value = "每页展示数量", required = true) @PathVariable(value = "pageSize",required = true) Integer pageSize,
-            @ApiParam(value = "用户信息", required = false) @RequestBody(required = false) User user
+            @ApiParam(value = "页数", required = true) @RequestParam(value = "pageIndex",required = true) Integer pageIndex,
+            @ApiParam(value = "每页展示数量", required = true) @RequestParam(value = "pageSize",required = true) Integer pageSize
     ) {
         BaseResult<IPage<User>> br = new BaseResult<>();
-        IPage<User> page = userService.selectPage(pageIndex,pageSize,user);
+        IPage<User> page = userService.selectPage(pageIndex,pageSize);
         br.setData(page);
         return br;
     }
@@ -64,8 +63,8 @@ public class UserController {
     }
 
     @ApiOperation(value = "删除用户", notes = "删除用户")
-    @RequestMapping(value = "/updateUser", produces = Constant.PRODUCES_JSON, method = RequestMethod.DELETE)
-    public BaseResult<String> updateUser(
+    @RequestMapping(value = "/deleteUser", produces = Constant.PRODUCES_JSON, method = RequestMethod.DELETE)
+    public BaseResult<String> deleteUser(
             @ApiParam(value = "用户id", required = true) @RequestBody(required = true) Long id
     ) {
         BaseResult<String> br = new BaseResult<>();
