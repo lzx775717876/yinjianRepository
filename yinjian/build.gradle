@@ -34,11 +34,14 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-redis')
 	compile group: 'com.alibaba', name: 'fastjson', version:'1.2.41'
 
-//	swagger
+	//swagger
 	implementation "io.springfox:springfox-swagger2:2.9.2"
 	implementation "io.springfox:springfox-swagger-ui:2.9.2"
 	implementation "io.swagger:swagger-annotations:1.5.21"
 	implementation "io.swagger:swagger-models:1.5.21"
+
+	//validation 我草这玩意跟validator通用
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.1.2.RELEASE'
 }
 
 test {
