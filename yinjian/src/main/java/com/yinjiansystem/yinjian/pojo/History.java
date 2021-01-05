@@ -21,4 +21,6 @@ public class History extends BaseModel {
     @ApiModelProperty(value = "历史信息")
     private String message;
 
+    @ApiModelProperty(value = "图片地址")
+    private String photoPath;
 }
