@@ -25,7 +25,7 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public IPage<Loan> selectPage(Integer pageNum, Integer pageSize, String userName, Integer status, String dateFrom, String dateTo) {
-        IPage<Loan> buyPage = new Page<>(pageNum, pageSize);
+        IPage<Loan> loanPage = new Page<>(pageNum, pageSize);
         QueryWrapper<Loan> query = new QueryWrapper<>();
         if (!Utils.stringEmptyOrNull(userName)){
             query.like("userName",userName);
@@ -39,7 +39,7 @@ public class LoanServiceImpl implements LoanService {
         if (!Utils.stringEmptyOrNull(dateTo)){
             query.le("dateTo",dateTo);
         }
-        return loanMapper.selectPage(buyPage, query);
+        return loanMapper.selectPage(loanPage, query);
     }
 
     @Override
