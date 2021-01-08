@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yinjiansystem.yinjian.dao.HistoryMapper;
 import com.yinjiansystem.yinjian.pojo.History;
 import com.yinjiansystem.yinjian.service.HistoryService;
-import com.yinjiansystem.yinjian.service.HistoryService;
 import com.yinjiansystem.yinjian.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
