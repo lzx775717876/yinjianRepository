@@ -31,20 +31,45 @@ $(document).ready(function() {
         }
     }
     //Buttons examples
-    var table = $('#datatable-buttons').DataTable({
-        lengthChange: false,
-        "language": {
-            "paginate": {
-                "previous": "<i class='mdi mdi-chevron-left'>",
-                "next": "<i class='mdi mdi-chevron-right'>"
-            }
-        },
-        "drawCallback": function () {
-            $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-        },
-        // buttons: ['copy', 'excel', 'pdf', 'colvis']
-    });
 
+    var kejinListVue = new Vue({
+        el: '#kejinList',
+        data: {
+            hehe: false,
+            kejinList: []
+        },
+        mounted() {
+            var table = $('#datatable-buttons').DataTable({
+                lengthChange: false,
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'>",
+                        "next": "<i class='mdi mdi-chevron-right'>"
+                    }
+                },
+                "drawCallback": function () {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
+                },
+                "order": []
+                // buttons: ['copy', 'excel', 'pdf', 'colvis']
+            });
+        },
+        created() {
+            let thisPage = this;
+            $.ajax({
+                url: 'http://localhost:8080/buy/selectPage?pageIndex=1&pageSize=10000',
+                type: "GET",
+                async: false,
+                contentType: "text",
+                success: function(result) {
+                    console.log(result.data.records)
+                    thisPage.kejinList = result.data.records;
+                },
+                error: function(xMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+    })
     // table.buttons().container()
     //     .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
 

@@ -85,6 +85,7 @@
         "sweetalert2": "^9.10.12",
         "tinymce": "^5.2.2",
         "toastr": "^2.1.4",
-        "twitter-bootstrap-wizard": "^1.2.0"
+        "twitter-bootstrap-wizard": "^1.2.0",
+        "vue": "^2.6.12"
     }
 }
