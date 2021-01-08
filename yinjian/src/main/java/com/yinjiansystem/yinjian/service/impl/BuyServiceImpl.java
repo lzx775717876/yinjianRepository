@@ -25,7 +25,8 @@ public class BuyServiceImpl implements BuyService {
 
     @Override
     public IPage<Buy> selectPage(Integer pageNum, Integer pageSize, String userName, String gameName, Integer type, String dateFrom, String dateTo) {
-        IPage<Buy> buyPage = new Page<>(pageNum, pageSize);
+        Page<Buy> buyPage = new Page<>(pageNum, pageSize);
+        buyPage.setDesc("id");
         QueryWrapper<Buy> query = new QueryWrapper<>();
         if (!Utils.stringEmptyOrNull(userName)){
             query.like("userName",userName);

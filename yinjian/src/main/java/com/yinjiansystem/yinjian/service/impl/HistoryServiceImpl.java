@@ -25,7 +25,8 @@ public class HistoryServiceImpl implements HistoryService {
 
     @Override
     public IPage<History> selectPage(Integer pageNum, Integer pageSize, String title, String dateFrom, String dateTo) {
-        IPage<History> historyPage = new Page<>(pageNum, pageSize);
+        Page<History> historyPage = new Page<>(pageNum, pageSize);
+        historyPage.setDesc("id");
         QueryWrapper<History> query = new QueryWrapper<>();
         if (!Utils.stringEmptyOrNull(title)){
             query.like("title",title);

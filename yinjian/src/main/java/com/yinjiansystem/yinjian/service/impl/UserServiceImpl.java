@@ -23,7 +23,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public IPage<User> selectPage(Integer pageNum, Integer pageSize) {
-        IPage<User> userPage = new Page<>(pageNum, pageSize);
+        Page<User> userPage = new Page<>(pageNum, pageSize);
+        userPage.setDesc("id");
         return userMapper.selectPage(userPage, null);
     }
 

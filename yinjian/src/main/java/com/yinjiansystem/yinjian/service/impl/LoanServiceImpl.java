@@ -25,7 +25,8 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public IPage<Loan> selectPage(Integer pageNum, Integer pageSize, String userName, Integer status, String dateFrom, String dateTo) {
-        IPage<Loan> loanPage = new Page<>(pageNum, pageSize);
+        Page<Loan> loanPage = new Page<>(pageNum, pageSize);
+        loanPage.setDesc("id");
         QueryWrapper<Loan> query = new QueryWrapper<>();
         if (!Utils.stringEmptyOrNull(userName)){
             query.like("userName",userName);
