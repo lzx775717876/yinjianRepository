@@ -24,15 +24,10 @@ public class Buy extends BaseModel {
     @ApiModelProperty(value = "氪金类型 0-虚拟 1-实体")
     private Integer type;
 
-    @ApiModelProperty(value = "是否退款 0-未退款 1-退款")
-    private Integer refund;
-
     @ApiModelProperty(value = "金额")
     private String money;
 
     @ApiModelProperty(value = "备注")
     private String remark;
 
-    @ApiModelProperty(value = "图片地址")
-    private String photoPath;
 }
