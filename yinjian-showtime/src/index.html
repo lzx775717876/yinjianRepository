@@ -30,7 +30,7 @@
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
-            <div class="main-content">
+            <div id="kejinDashBoard" v-cloak class="main-content">
 
                 <div class="page-content">
                     <div class="container-fluid">
@@ -60,7 +60,7 @@
                                         <div class="row">
                                             <div class="col-sm-4">
                                                 <div class="d-inline-flex">
-                                                    <h5 class="mr-2">￥ 189635</h5>
+                                                    <h5 class="mr-2">￥ {{allMoney}}</h5>
                                                     <!--<div class="text-success">-->
                                                         <!--<i class="mdi mdi-menu-up font-size-14"> </i>2.2 %-->
                                                     <!--</div>-->
@@ -72,7 +72,7 @@
                                                 <div class="mt-4 mt-sm-0">
                                                     <p class="mb-2 text-muted text-truncate"><i class="mdi mdi-circle text-primary font-size-10 mr-1"></i> 虚拟氪金总数 </p>
                                                     <div class="d-inline-flex">
-                                                        <h5 class="mb-0 mr-2">￥ 96940</h5>
+                                                        <h5 class="mb-0 mr-2">￥ {{allVirtual}}</h5>
                                                         <!--<div class="text-success">-->
                                                             <!--<i class="mdi mdi-menu-up font-size-14"> </i>2.1 %-->
                                                         <!--</div>-->
@@ -83,7 +83,7 @@
                                                 <div class="mt-4 mt-sm-0">
                                                     <p class="mb-2 text-muted text-truncate"><i class="mdi mdi-circle text-success font-size-10 mr-1"></i> 实体氪金总数 </p>
                                                     <div class="d-inline-flex">
-                                                        <h5 class="mb-0">￥ 92695</h5>
+                                                        <h5 class="mb-0">￥ {{allReality}}</h5>
                                                     </div>
                                                 </div>
                                             </div>
