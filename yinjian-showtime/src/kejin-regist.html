@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        
+        @@include("partials/title-meta.html", {"title": "氪金登记"})
+
+        <!-- Sweet Alert-->
+        <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+        @@include("partials/head-css.html")
+
+    </head>
+
+    <body data-sidebar="dark">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            @@include("partials/topbar.html")
+
+            @@include("partials/sidebar.html")
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div id="kejinRegist" v-cloak class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        @@include("partials/page-title.html", {"pagetitle": "氪金", "title": "氪金登记"})
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+        
+                                        <h4 class="card-title">来吧，氪金人！</h4>
+                                        <p class="card-title-desc">介回你又氪什么了？</p>
+        
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-1 col-form-label">我是谁？</label>
+                                            <div class="col-md-3">
+                                                <select v-model="kejinWho" class="form-control">
+                                                    <option>路西</option>
+                                                    <option>洪哥</option>
+                                                    <option>阿鸡</option>
+                                                    <option>拓哥</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-1 col-form-label">氪的玩意是？</label>
+                                            <div class="col-md-3">
+                                                <input class="form-control" type="text" v-model="kejinItem" id="example-text-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-1 col-form-label">快捷选择</label>
+                                            <div class="col-md-2">
+                                                <button type="button" class="btn btn-primary waves-effect waves-light">
+                                                    现有已氪的玩意 <i class="ri-arrow-right-line align-middle ml-2"></i>
+                                                </button></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-1 col-form-label">实的还是虚的？</label>
+                                            <div class="col-md-5">
+                                                <div>
+                                                    <input class="mt-2" type="checkbox" id="switch1" switch="none" checked v-model="kejinType"/>
+                                                    <label class="mt-2" for="switch1" data-on-label="实体" data-off-label="虚拟"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-1 col-form-label">氪了多少？</label>
+                                            <div class="col-md-3">
+                                                <input class="form-control" type="number" v-model="kejinMoney" @input="moneyCheck">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-1 col-form-label">什么前儿氪的？</label>
+                                            <div class="col-md-3">
+                                                <input class="form-control" type="datetime-local" v-model="kejinTime">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-1 col-form-label">来说说你的故事吧！</label>
+                                            <div class="col-md-3">
+                                                <textarea class="form-control" rows="3" v-model="kejinRemark"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-3">
+                                                <button type="button" class="btn btn-primary waves-effect waves-light" @click="regist">
+                                                    走你！
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                @@include("partials/footer.html")
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        @@include("partials/right-sidebar.html")
+
+        @@include("partials/vendor-scripts.html")
+
+        <!-- bs custom file input plugin -->
+        <script src="assets/libs/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+        <!-- Sweet Alerts js -->
+        <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+        <script src="assets/js/pages/kejin-regist.init.js"></script>
+
+        <script src="assets/js/app.js"></script>
+
+    </body>
+</html>

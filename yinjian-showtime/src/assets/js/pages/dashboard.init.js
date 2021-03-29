@@ -92,6 +92,26 @@ $(document).ready(function() {
                 this.weekReality = weekReality;
             },
             init() {
+                //Danger
+                $('#dynamic-alert').click(function () {
+                    swal.queue([{
+                        title: '快捷查询本机IP',
+                        confirmButtonColor: "#5438dc",
+                        confirmButtonText: '查看我的公网IP',
+                        text: '点击下面按钮获取你的公网IP',
+                        showLoaderOnConfirm: true,
+                        preConfirm: function () {
+                            return new Promise(function (resolve) {
+                                $.get('https://api.ipify.org?format=json')
+                                    .done(function (data) {
+                                        swal.insertQueueStep(data.ip)
+                                        resolve()
+                                    })
+                            })
+                        }
+                    }]).catch(swal.noop)
+                });
+
                 let honggeAll = this.honggeVirtual + this.honggeReality;
                 let luxiAll = this.luxiVirtual + this.luxiReality;
                 let tuogeAll = this.tuogeVirtual + this.tuogeReality;
