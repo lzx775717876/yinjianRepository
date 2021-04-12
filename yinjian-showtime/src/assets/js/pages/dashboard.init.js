@@ -14,6 +14,32 @@ $(document).ready(function() {
         el: '#kejinDashBoard',
         data: {
             hehe: false,
+            nowSelectTimeRound: {
+                value: 'week',
+                name: '近一周总氪金'
+            },
+            currentList: [
+                {
+                    value: 'week',
+                    name: '近一周总氪金',
+                    multi: 2500
+                },
+                {
+                    value: 'month',
+                    name: '近一月总氪金',
+                    multi: 7500
+                },
+                {
+                    value: 'quarter',
+                    name: '近三月总氪金',
+                    multi: 20000
+                },
+                {
+                    value: 'year',
+                    name: '近一年总氪金',
+                    multi: 50000
+                },
+            ],
             kejinList: [],
             allMoney: 0,
             allVirtual: 0,
@@ -26,16 +52,139 @@ $(document).ready(function() {
             honggeReality: 0,
             ajiReality: 0,
             tuogeReality: 0,
-            weekVirtual: 0,
-            weekReality: 0
+            currentVirtual: 0,
+            currentReality: 0,
+            currentMulti: 2500,
+            currentCalculate: {
+                weekVirtual: 0,
+                monthVirtual: 0,
+                quarterVirtual: 0,
+                yearVirtual: 0,
+                weekReality: 0,
+                monthReality: 0,
+                quarterReality: 0,
+                yearReality: 0
+            }
         },
         methods: {
+            selectTimeRound(timeRound, index) {
+                switch (timeRound) {
+                    case 'week':
+                        this.currentVirtual = this.currentCalculate.weekVirtual;
+                        this.currentReality = this.currentCalculate.weekReality;
+                        this.currentMulti = 2500;
+                        break;
+                    case 'month':
+                        this.currentVirtual = this.currentCalculate.monthVirtual;
+                        this.currentReality = this.currentCalculate.monthReality;
+                        this.currentMulti = 7500;
+                        break;
+                    case 'quarter':
+                        this.currentVirtual = this.currentCalculate.quarterVirtual;
+                        this.currentReality = this.currentCalculate.quarterReality;
+                        this.currentMulti = 20000;
+                        break;
+                    case 'year':
+                        this.currentVirtual = this.currentCalculate.yearVirtual;
+                        this.currentReality = this.currentCalculate.yearReality;
+                        this.currentMulti = 50000;
+                        break;
+                }
+
+                this.nowSelectTimeRound = this.currentList[index];
+
+                // Radialchart 1
+
+                let radialoptionsReset = {
+                    series: [parseFloat(this.currentVirtual/this.currentMulti*100)],
+                    chart: {
+                        type: 'radialBar',
+                        wight: 60,
+                        height: 60,
+                        sparkline: {
+                            enabled: true
+                        }
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    colors: ['#5664d2'],
+                    stroke: {
+                        lineCap: 'round'
+                    },
+                    plotOptions: {
+                        radialBar: {
+                            hollow: {
+                                margin: 0,
+                                size: '70%'
+                            },
+                            track: {
+                                margin: 0,
+                            },
+
+                            dataLabels: {
+                                show: false
+                            }
+                        }
+                    }
+                };
+
+                $("#radialchart-1").empty();
+                let radialchartReset = new ApexCharts(document.querySelector("#radialchart-1"), radialoptionsReset);
+                radialchartReset.render();
+
+
+                // Radialchart 2
+
+                let radialoptionsReset2 = {
+                    series: [parseFloat(this.currentReality/this.currentMulti*100)],
+                    chart: {
+                        type: 'radialBar',
+                        wight: 60,
+                        height: 60,
+                        sparkline: {
+                            enabled: true
+                        }
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    colors: ['#1cbb8c'],
+                    stroke: {
+                        lineCap: 'round'
+                    },
+                    plotOptions: {
+                        radialBar: {
+                            hollow: {
+                                margin: 0,
+                                size: '70%'
+                            },
+                            track: {
+                                margin: 0,
+                            },
+
+                            dataLabels: {
+                                show: false
+                            }
+                        }
+                    }
+                };
+
+                $("#radialchart-2").empty();
+                let radialchartReset2 = new ApexCharts(document.querySelector("#radialchart-2"), radialoptionsReset2);
+                radialchartReset2.render();
+            },
             calculateAll() {
                 let length = this.kejinList.length;
                 let allMoney = 0, allVirtual = 0, luxiVirtual = 0, luxiReality = 0,
                     honggeVirtual = 0, honggeReality = 0, ajiVirtual = 0, ajiReality = 0,
-                    tuogeVirtual = 0, tuogeReality = 0, weekVirtual = 0, weekReality = 0;
+                    tuogeVirtual = 0, tuogeReality = 0, weekVirtual = 0, weekReality = 0,
+                    monthVirtual = 0, monthReality = 0, quarterVirtual = 0, quarterReality = 0,
+                    yearVirtual = 0, yearReality = 0;
                 let aWeekBefore = moment().add(-7, 'days');
+                let aMonthBefore = moment().add(-1, 'months');
+                let aQuarterBefore = moment().add(-3, 'months');
+                let aYearBefore = moment().add(-1, 'years');
                 for (let i = 0; i < length; i++) {
                     allMoney += Number(this.kejinList[i].money);
                     if (this.kejinList[i].type == 0) {
@@ -43,9 +192,27 @@ $(document).ready(function() {
                         if (aWeekBefore <= moment(new Date(this.kejinList[i].createTime))) {
                             weekVirtual += Number(this.kejinList[i].money);
                         }
+                        if (aMonthBefore <= moment(new Date(this.kejinList[i].createTime))) {
+                            monthVirtual += Number(this.kejinList[i].money);
+                        }
+                        if (aQuarterBefore <= moment(new Date(this.kejinList[i].createTime))) {
+                            quarterVirtual += Number(this.kejinList[i].money);
+                        }
+                        if (aYearBefore <= moment(new Date(this.kejinList[i].createTime))) {
+                            yearVirtual += Number(this.kejinList[i].money);
+                        }
                     } else {
                         if (aWeekBefore <= moment(new Date(this.kejinList[i].createTime))) {
                             weekReality += Number(this.kejinList[i].money);
+                        }
+                        if (aMonthBefore <= moment(new Date(this.kejinList[i].createTime))) {
+                            monthReality += Number(this.kejinList[i].money);
+                        }
+                        if (aQuarterBefore <= moment(new Date(this.kejinList[i].createTime))) {
+                            quarterReality += Number(this.kejinList[i].money);
+                        }
+                        if (aYearBefore <= moment(new Date(this.kejinList[i].createTime))) {
+                            yearReality += Number(this.kejinList[i].money);
                         }
                     }
                     if (this.kejinList[i].userName == '路西') {
@@ -88,8 +255,16 @@ $(document).ready(function() {
                 this.ajiReality = ajiReality;
                 this.tuogeVirtual = tuogeVirtual;
                 this.tuogeReality = tuogeReality;
-                this.weekVirtual = weekVirtual;
-                this.weekReality = weekReality;
+                this.currentVirtual = weekVirtual;
+                this.currentReality = weekReality;
+                this.currentCalculate.weekVirtual = weekVirtual;
+                this.currentCalculate.weekReality = weekReality;
+                this.currentCalculate.monthVirtual = monthVirtual;
+                this.currentCalculate.monthReality = monthReality;
+                this.currentCalculate.quarterVirtual = quarterVirtual;
+                this.currentCalculate.quarterReality = quarterReality;
+                this.currentCalculate.yearVirtual = yearVirtual;
+                this.currentCalculate.yearReality = yearReality;
             },
             init() {
                 //Danger
@@ -186,7 +361,7 @@ $(document).ready(function() {
                 // Radialchart 1
 
                 var radialoptions = {
-                    series: [parseFloat(this.weekVirtual/2500*100)],
+                    series: [parseFloat(this.currentVirtual/this.currentMulti*100)],
                     chart: {
                         type: 'radialBar',
                         wight: 60,
@@ -226,7 +401,7 @@ $(document).ready(function() {
                 // Radialchart 2
 
                 var radialoptions = {
-                    series: [parseFloat(this.weekReality/2500*100)],
+                    series: [parseFloat(this.currentReality/this.currentMulti*100)],
                     chart: {
                         type: 'radialBar',
                         wight: 60,

@@ -102,15 +102,11 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">本月总氪金</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">本季度总氪金</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">本年度总氪金</a>
+                                                <a href="javascript:void(0);" class="dropdown-item" v-for="(item, index) in currentList" :key="index" @click="selectTimeRound(item.value, index)">{{item.name}}</a>
                                             </div>
                                         </div>
 
-                                        <h4 class="card-title mb-4">本周总氪金</h4>
+                                        <h4 class="card-title mb-4">{{nowSelectTimeRound.name}}</h4>
                                         <div class="text-center">
                                             <div class="row">
                                                 <div class="col-sm-6">
@@ -120,7 +116,7 @@
                                                         </div>
 
                                                         <p class="text-muted text-truncate mb-2">虚拟</p>
-                                                        <h5 class="mb-0">￥ {{weekVirtual}}</h5>
+                                                        <h5 class="mb-0">￥ {{currentVirtual}}</h5>
                                                     </div>
                                                 </div>
 
@@ -131,7 +127,7 @@
                                                         </div>
 
                                                         <p class="text-muted text-truncate mb-2">实体</p>
-                                                        <h5 class="mb-0">￥ {{weekReality}}</h5>
+                                                        <h5 class="mb-0">￥ {{currentReality}}</h5>
                                                     </div>
                                                 </div>
 

@@ -11,7 +11,7 @@ $(document).ready(function() {
     kejinRegistVue = new Vue({
         el: '#kejinRegist',
         data: {
-            kejinWho: null,
+            kejinWho: '',
             kejinItem: null,
             kejinType: false,
             kejinMoney: null,
@@ -25,7 +25,7 @@ $(document).ready(function() {
                 }
             },
             regist() {
-                if (this.kejinMoney == null || this.kejinItem == null || this.kejinWho == null) {
+                if (this.kejinMoney == null || this.kejinItem == null || this.kejinWho == '') {
                     Swal.fire(
                         {
                           title: "是不是漏了什么没填？",
