@@ -57,7 +57,7 @@ $(document).ready(function() {
         created() {
             let thisPage = this;
             $.ajax({
-                url: 'http://localhost:8080/buy/selectPage?pageIndex=1&pageSize=10000',
+                url: 'http://47.114.43.71:8080/buy/selectPage?pageIndex=1&pageSize=10000',
                 type: "GET",
                 async: false,
                 contentType: "text",

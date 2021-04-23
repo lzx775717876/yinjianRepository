@@ -68,7 +68,7 @@ $(document).ready(function() {
                     kejinMessage = '相当于氪了一单扶她狗！'
                 }
                 $.ajax({
-                    url: 'http://localhost:8080/buy/insertBuy',
+                    url: 'http://47.114.43.71:8080/buy/insertBuy',
                     type: "POST",
                     data: JSON.stringify(param),
                     async: false,
