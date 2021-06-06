@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Description 氪金 Service层 实现类
@@ -47,9 +48,23 @@ public class BuyServiceImpl implements BuyService {
     }
 
     @Override
+    public List<Buy> selectList() {
+        return buyMapper.selectList(new QueryWrapper<Buy>().orderByDesc("id"));
+    }
+
+    @Override
+    public List<String> selectLatestGame() {
+        List<String> latestGames = buyMapper.selectLatestGame();
+        Utils.removeDuplicateWithOrder(latestGames);
+        return latestGames;
+    }
+
+    @Override
     public int insertBuy(Buy buy){
         try{
-            buy.setCreateTime(new Date());
+            if (buy.getCreateTime() == null) {
+                buy.setCreateTime(new Date());
+            }
             buy.setUpdateTime(new Date());
             return buyMapper.insert(buy);
         }catch (Exception e) {

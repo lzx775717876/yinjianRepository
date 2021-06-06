@@ -60,9 +60,26 @@
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-md-1 col-form-label">快捷选择</label>
                                             <div class="col-md-2">
-                                                <button type="button" class="btn btn-primary waves-effect waves-light">
+                                                <button type="button" class="btn btn-primary waves-effect waves-light" @click="getLatestGame" data-toggle="modal" data-target=".bs-example-modal-center">
                                                     现有已氪的玩意 <i class="ri-arrow-right-line align-middle ml-2"></i>
-                                                </button></div>
+                                                </button>
+                                            </div>
+                                            <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title mt-0">最近氪了↓↓↓</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body" style="line-height: 60px;">
+                                                            <button type="button" class="btn btn-primary waves-effect waves-light" v-for="item in latestGame" style="margin-left: 22px;" @click="pointGame(item)">{{item}}</button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-1 col-form-label">实的还是虚的？</label>

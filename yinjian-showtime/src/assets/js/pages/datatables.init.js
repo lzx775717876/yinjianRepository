@@ -5,6 +5,8 @@ Contact: themesdesign.in@gmail.com
 File: Datatables Js File
 */
 
+var kejinListVue;
+
 $(document).ready(function() {
     $.fn.dataTable.defaults.oLanguage = {
         "sProcessing": "处理中...",
@@ -32,11 +34,16 @@ $(document).ready(function() {
     }
     //Buttons examples
 
-    var kejinListVue = new Vue({
+    kejinListVue = new Vue({
         el: '#kejinList',
         data: {
             hehe: false,
             kejinList: []
+        },
+        methods: {
+          dateFormat(date) {
+              return moment(new Date(date)).format("YYYY年MM月DD日 HH:mm:ss");
+          }
         },
         mounted() {
             var table = $('#datatable-buttons').DataTable({
@@ -57,13 +64,12 @@ $(document).ready(function() {
         created() {
             let thisPage = this;
             $.ajax({
-                url: 'http://47.114.43.71:8080/buy/selectPage?pageIndex=1&pageSize=10000',
+                url: 'http://47.114.43.71:8080/buy/selectList',
                 type: "GET",
                 async: false,
                 contentType: "text",
                 success: function(result) {
-                    console.log(result.data.records)
-                    thisPage.kejinList = result.data.records;
+                    thisPage.kejinList = result.data;
                 },
                 error: function(xMLHttpRequest, textStatus, errorThrown) {
                 }

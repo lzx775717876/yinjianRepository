@@ -12,6 +12,8 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @Description 氪金 Controller层
  * @Author DT
@@ -41,6 +43,24 @@ public class BuyController {
         BaseResult<IPage<Buy>> br = new BaseResult<>();
         IPage<Buy> page = buyService.selectPage(pageIndex,pageSize,userName,gameName,type,dateFrom,dateTo);
         br.setData(page);
+        return br;
+    }
+
+    @ApiOperation(value = "全表查询", notes = "全表查询")
+    @RequestMapping(value = "/selectList", produces = Constant.PRODUCES_JSON, method = RequestMethod.GET)
+    public BaseResult<List<Buy>> selectPage() {
+        BaseResult<List<Buy>> br = new BaseResult<>();
+        List<Buy> buys = buyService.selectList();
+        br.setData(buys);
+        return br;
+    }
+
+    @ApiOperation(value = "最近虚拟氪金项目查询", notes = "最近虚拟氪金项目查询")
+    @RequestMapping(value = "/selectLatestGame", produces = Constant.PRODUCES_JSON, method = RequestMethod.GET)
+    public BaseResult<List<String>> selectLatestGame() {
+        BaseResult<List<String>> br = new BaseResult<>();
+        List<String> latestGame = buyService.selectLatestGame();
+        br.setData(latestGame);
         return br;
     }
 

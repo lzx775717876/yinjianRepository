@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yinjiansystem.yinjian.pojo.Buy;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @Description 氪金 Dao层
  * @Author DT
@@ -11,5 +13,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface BuyMapper extends BaseMapper<Buy> {
-
+    List<String> selectLatestGame();
 }

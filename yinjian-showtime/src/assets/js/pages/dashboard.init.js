@@ -445,13 +445,12 @@ $(document).ready(function() {
         created() {
             let thisPage = this;
             $.ajax({
-                url: 'http://47.114.43.71:8080/buy/selectPage?pageIndex=1&pageSize=10000',
+                url: 'http://47.114.43.71:8080/buy/selectList',
                 type: "GET",
                 async: false,
                 contentType: "text",
                 success: function(result) {
-                    console.log(result.data.records);
-                    thisPage.kejinList = result.data.records;
+                    thisPage.kejinList = result.data;
                 },
                 error: function(xMLHttpRequest, textStatus, errorThrown) {
                 }

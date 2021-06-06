@@ -3,6 +3,8 @@ package com.yinjiansystem.yinjian.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yinjiansystem.yinjian.pojo.Buy;
 
+import java.util.List;
+
 /**
  * @Description 氪金 Service层
  * @Author DT
@@ -38,5 +40,15 @@ public interface BuyService {
      * @param id 氪金信息id
      */
     int deleteById(Long id);
+
+    /**
+     * 全表查询
+     */
+    List<Buy> selectList();
+
+    /**
+     * 获取最近氪金游戏
+     */
+    List<String> selectLatestGame();
 
 }

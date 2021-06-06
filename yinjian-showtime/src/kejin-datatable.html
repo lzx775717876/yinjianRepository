@@ -55,14 +55,14 @@
         
         
                                             <tbody>
-                                            <tr v-for="item in kejinList">
-                                                <td>{{item.id}}</td>
+                                            <tr v-for="(item, index) in kejinList">
+                                                <td>{{index + 1}}</td>
                                                 <td>{{item.userName}}</td>
                                                 <td>{{item.gameName}}</td>
                                                 <td>{{item.type == 0 ? '虚拟' : '实体'}}</td>
                                                 <td>{{item.money}}</td>
                                                 <td>{{item.remark}}</td>
-                                                <td>{{new Date(item.createTime)}}</td>
+                                                <td>{{dateFormat(item.createTime)}}</td>
                                             </tr>
 
                                             </tbody>

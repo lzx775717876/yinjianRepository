@@ -17,12 +17,31 @@ $(document).ready(function() {
             kejinMoney: null,
             kejinTime: null,
             kejinRemark: null,
+            latestGame: null
         },
         methods: {
             moneyCheck() {
                 if (this.kejinMoney < 0) {
                     this.kejinMoney = 0;
                 }
+            },
+            pointGame(gameName) {
+                this.kejinItem = gameName;
+                $('.close').click();
+            },
+            getLatestGame() {
+                let thisPage = this;
+                $.ajax({
+                    url: 'http://47.114.43.71:8080/buy/selectLatestGame',
+                    type: "GET",
+                    async: false,
+                    contentType: "text",
+                    success: function(result) {
+                        thisPage.latestGame = result.data;
+                    },
+                    error: function(xMLHttpRequest, textStatus, errorThrown) {
+                    }
+                });
             },
             regist() {
                 if (this.kejinMoney == null || this.kejinItem == null || this.kejinWho == '') {
@@ -42,6 +61,7 @@ $(document).ready(function() {
                     type: this.kejinType ? 1 : 0,
                     money: this.kejinMoney,
                     remark: this.kejinRemark,
+                    createTime: new Date(this.kejinTime)
                 }
                 let thisMoney = this.kejinMoney;
                 let kejinMessage = ''
@@ -64,7 +84,7 @@ $(document).ready(function() {
                 }
                 if (thisMoney <= 220 && thisMoney >= 200) {
                     kejinMessage = '相当于一个战神底特律合集！'
-                } else if (thisMoney == 518) {
+                } else if (thisMoney <= 520 && thisMoney >= 515) {
                     kejinMessage = '相当于氪了一单扶她狗！'
                 }
                 $.ajax({
