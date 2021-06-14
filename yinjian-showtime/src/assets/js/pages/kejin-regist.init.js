@@ -94,6 +94,9 @@ $(document).ready(function() {
                     async: false,
                     cache: false,
                     contentType: 'application/json;charset=utf-8',
+                    beforeSend: function (request) {
+                        request.setRequestHeader('token', localStorage.getItem('token'));
+                    },
                     success: function(result) {
                         Swal.fire(
                             {

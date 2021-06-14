@@ -3,7 +3,10 @@
 
     <head>
         
-        @@include("partials/title-meta.html", {"title": "Login"})
+        @@include("partials/title-meta.html", {"title": "登录"})
+
+        <!-- Sweet Alert-->
+        <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
         @@include("partials/head-css.html")
 
@@ -46,13 +49,13 @@
                                                         <input type="password" class="form-control" id="userpassword" placeholder="これは Your Secret">
                                                     </div>
                             
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customControlInline">
-                                                        <label class="custom-control-label" for="customControlInline">记住我</label>
-                                                    </div>
+<!--                                                    <div class="custom-control custom-checkbox">-->
+<!--                                                        <input type="checkbox" class="custom-control-input" id="customControlInline">-->
+<!--                                                        <label class="custom-control-label" for="customControlInline">记住我</label>-->
+<!--                                                    </div>-->
 
                                                     <div class="mt-4 text-center">
-                                                        <button class="btn btn-primary w-md waves-effect waves-light" type="submit">通往阴间的大门</button>
+                                                        <button class="btn btn-primary w-md waves-effect waves-light" type="button" onclick="userLogin()">通往阴间的大门</button>
                                                     </div>
 
                                                     <div class="mt-4 text-center">
@@ -75,9 +78,11 @@
             </div>
         </div>
 
-        
-
         @@include("partials/vendor-scripts.html")
+
+        <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+        <script src="assets/js/pages/auth.init.js"></script>
 
         <script src="assets/js/app.js"></script>
 

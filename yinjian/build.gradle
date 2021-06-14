@@ -33,6 +33,7 @@ dependencies {
 	compile group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.4'
 	compile('org.springframework.boot:spring-boot-starter-data-redis')
 	compile group: 'com.alibaba', name: 'fastjson', version:'1.2.41'
+	compile('com.auth0:java-jwt:3.3.0')
 
 	//swagger
 	implementation "io.springfox:springfox-swagger2:2.9.2"

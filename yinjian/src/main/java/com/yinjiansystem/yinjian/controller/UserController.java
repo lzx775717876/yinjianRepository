@@ -1,10 +1,13 @@
 package com.yinjiansystem.yinjian.controller;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yinjiansystem.yinjian.pojo.BaseResult;
 import com.yinjiansystem.yinjian.pojo.User;
 import com.yinjiansystem.yinjian.service.UserService;
 import com.yinjiansystem.yinjian.utils.Constant;
+import com.yinjiansystem.yinjian.utils.JWTUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -13,9 +16,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Description 用户 Controller层
- * @Author HCX + DT
+ * @Author HCX + DT + LZX
  * @Date 2020/11/27
  */
 @RestController
@@ -71,6 +79,41 @@ public class UserController {
         int result = userService.deleteById(id);
         br.setSuccess(result == 1);
         return br;
+    }
+
+    @ApiOperation(value = "用户登录", notes = "用户登录")
+    @RequestMapping(value = "/login", produces = Constant.PRODUCES_JSON, method = RequestMethod.POST)
+    public Map userLogin(@ApiParam(value = "用户名或邮箱", required = true) @RequestBody User user) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        User loginUser = userService.userLogin(user.getUserName(), user.getPassword());
+        if (loginUser == null) {
+            resultMap.put("error", "error");
+            return resultMap;
+        }
+        HashMap<String,Object> map = new HashMap<>();
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.SECOND,60);
+        try {
+            Map<String,String> payload = new HashMap<>();
+            payload.put("userName", loginUser.getUserName());
+            String token = JWTUtils.getToken(payload);
+            resultMap.put("token", token);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            resultMap.put("error", "JWTerror");
+            return resultMap;
+        }
+        resultMap.put("loginUser", loginUser);
+        return resultMap;
+    }
+
+    @ApiOperation(value = "获取用户信息", notes = "获取用户信息")
+    @RequestMapping(value = "/getUserInfo", produces = Constant.PRODUCES_JSON, method = RequestMethod.POST)
+    public Map getUserInfo(@ApiParam(value = "认证token", required = true) @RequestBody Map tokenMap) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        User userInfo = userService.getUserInfo(tokenMap.get("token").toString());
+        resultMap.put("userInfo", userInfo);
+        return resultMap;
     }
 
 }

@@ -3,7 +3,10 @@
 
     <head>
         
-        @@include("partials/title-meta.html", {"title": "Register"})
+        @@include("partials/title-meta.html", {"title": "注册"})
+
+        <!-- Sweet Alert-->
+        <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
         @@include("partials/head-css.html")
 
@@ -16,19 +19,19 @@
         <div>
             <div class="container-fluid p-0">
                 <div class="row no-gutters">
-                    <div class="col-lg-4">
+                    <div class="col-lg-12">
                         <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
                             <div class="w-100">
                                 <div class="row justify-content-center">
-                                    <div class="col-lg-9">
+                                    <div class="col-lg-3">
                                         <div>
                                             <div class="text-center">
                                                 <div>
-                                                    <a href="index.html" class="logo"><img src="assets/images/logo-dark.png" height="20" alt="logo"></a>
+                                                    <a href="index.html" class="logo"><img src="assets/images/qicaiKing.png" height="200" alt="这是我们的master，七彩氪金之王"></a>
                                                 </div>
     
-                                                <h4 class="font-size-18 mt-4">Register account</h4>
-                                                <p class="text-muted">Get your free Nazox account now.</p>
+                                                <h4 class="font-size-18 mt-4">注册帐号辣</h4>
+                                                <p class="text-muted">告诉你，要不是阴间四人组的，你可能还注册不了.</p>
                                             </div>
 
                                             <div class="p-2 mt-5">
@@ -36,36 +39,33 @@
 
                                                     <div class="form-group auth-form-group-custom mb-4">
                                                         <i class="ri-mail-line auti-custom-input-icon"></i>
-                                                        <label for="useremail">Email</label>
-                                                        <input type="email" class="form-control" id="useremail" placeholder="Enter email">
+                                                        <label for="useremail">邮箱</label>
+                                                        <input type="email" class="form-control" id="useremail" placeholder="输入邮箱">
                                                     </div>
                     
                                                     <div class="form-group auth-form-group-custom mb-4">
                                                         <i class="ri-user-2-line auti-custom-input-icon"></i>
-                                                        <label for="username">Username</label>
-                                                        <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                                        <label for="username">用户名</label>
+                                                        <input type="text" class="form-control" id="username" placeholder="输入用户名">
                                                     </div>
                             
                                                     <div class="form-group auth-form-group-custom mb-4">
                                                         <i class="ri-lock-2-line auti-custom-input-icon"></i>
-                                                        <label for="userpassword">Password</label>
-                                                        <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                                        <label for="userpassword">密码</label>
+                                                        <input type="password" class="form-control" id="userpassword" placeholder="输入密码">
                                                     </div>
                             
 
                                                     <div class="text-center">
-                                                        <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Register</button>
+                                                        <button class="btn btn-primary w-md waves-effect waves-light" type="button" id="user-regist">注册</button>
                                                     </div>
 
-                                                    <div class="mt-4 text-center">
-                                                        <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of Use</a></p>
-                                                    </div>
                                                 </form>
                                             </div>
 
                                             <div class="mt-5 text-center">
-                                                <p>Already have an account ? <a href="auth-login.html" class="font-weight-medium text-primary"> Login</a> </p>
-                                                <p>© 2020 Nazox. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</p>
+                                                <p>已经有号了 ? 那你往这点干什么？？？？？？<a href="auth-login.html" class="font-weight-medium text-primary"> 在这登录</a> </p>
+                                                <p>© 阴间四人组 <i class="mdi mdi-heart text-danger"></i></p>
                                             </div>
                                         </div>
 
@@ -74,18 +74,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8">
-                        <div class="authentication-bg">
-                            <div class="bg-overlay"></div>
-                        </div>
-                    </div>
+<!--                    <div class="col-lg-8">-->
+<!--                        <div class="authentication-bg">-->
+<!--                            <div class="bg-overlay"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
 
-        
-
         @@include("partials/vendor-scripts.html")
+
+        <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+        <script src="assets/js/pages/auth.init.js"></script>
 
         <script src="assets/js/app.js"></script>
 

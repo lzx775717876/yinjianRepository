@@ -34,4 +34,17 @@ public interface UserService {
      */
     int deleteById(Long id);
 
+    /**
+     * 用户登录
+     * @param userName 用户名或邮箱
+     * @param password 密码
+     */
+    User userLogin(String userName, String password);
+
+    /**
+     * 获取用户信息
+     * @param token 认证token
+     */
+    User getUserInfo(String token);
+
 }
