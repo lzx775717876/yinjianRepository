@@ -26,6 +26,17 @@ function userLogin() {
         contentType: 'application/json;charset=utf-8',
         success: function(result) {
             console.log(result);
+            if (result.error == 'error') {
+                Swal.fire(
+                    {
+                        title: "脑瘫啊，没上去！",
+                        text: '用户名和密码也不对啊，你来这干得儿来了???',
+                        icon: 'error',
+                        confirmButtonColor: '#5438dc'
+                    }
+                )
+                return;
+            }
             localStorage.setItem("token", result.token);
             window.location.href = "/index.html"
         },

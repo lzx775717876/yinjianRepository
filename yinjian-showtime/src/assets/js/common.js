@@ -14,9 +14,21 @@ function commonGetUserInfo() {
         },
         success: function(result) {
             $('#top-user-name').text(result.userInfo.name);
+            if (result.userInfo.name == '路西') {
+                $('.header-profile-user').prop('src', 'assets/images/users/lu.png')
+            } else if (result.userInfo.name == '洪哥') {
+                $('.header-profile-user').prop('src', 'assets/images/users/hong.png')
+            } else if (result.userInfo.name == '拓哥') {
+                $('.header-profile-user').prop('src', 'assets/images/users/tuo.png')
+            } else if (result.userInfo.name == '阿鸡') {
+                $('.header-profile-user').prop('src', 'assets/images/users/ji.png')
+            }
+            localStorage.setItem('userName', result.userInfo.name);
         },
         error: function(xMLHttpRequest, textStatus, errorThrown) {
-            $('#top-user-name').text("未登录");
+            $('#top-user-name').text('未登录');
+            $('.header-profile-user').prop('src', 'assets/images/users/avatar-2.jpg');
+            localStorage.removeItem('userName');
         }
     });
 }

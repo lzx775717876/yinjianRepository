@@ -124,11 +124,24 @@ $(document).ready(function() {
             }
         },
         mounted() {
-
+            this.kejinWho = localStorage.getItem('userName');
+            this.kejinTime = moment().format('YYYY-MM-DDTHH:mm')
         },
         created() {
             let thisPage = this;
-
+            if (!localStorage.getItem("userName")) {
+                Swal.fire(
+                    {
+                        title: "还没登录呢！",
+                        text: '2秒后自动进入登录页面...',
+                        icon: 'error',
+                        confirmButtonColor: '#5438dc'
+                    }
+                )
+                setTimeout(function () {
+                    location.href = "auth-login.html";
+                }, 2000);
+            }
         }
     })
 });
