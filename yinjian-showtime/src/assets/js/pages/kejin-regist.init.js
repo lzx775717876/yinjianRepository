@@ -17,7 +17,8 @@ $(document).ready(function() {
             kejinMoney: null,
             kejinTime: null,
             kejinRemark: null,
-            latestGame: null
+            latestGame: null,
+            userLatestKejinList: null,
         },
         methods: {
             moneyCheck() {
@@ -107,7 +108,7 @@ $(document).ready(function() {
                                 cancelButtonColor: "#ff3d60"
                             }
                         ).then(function () {
-                            window.location = "index.html";
+                            window.location.reload();
                         })
                     },
                     error: function(xMLHttpRequest, textStatus, errorThrown) {
@@ -141,6 +142,34 @@ $(document).ready(function() {
                 setTimeout(function () {
                     location.href = "auth-login.html";
                 }, 2000);
+            } else {
+                let param = {
+                    userName: localStorage.getItem('userName')
+                };
+                $.ajax({
+                    url: 'http://localhost:8080/buy/selectPersonalLatestBuy',
+                    type: "POST",
+                    data: JSON.stringify(param),
+                    async: false,
+                    cache: false,
+                    contentType: 'application/json;charset=utf-8',
+                    beforeSend: function (request) {
+                        request.setRequestHeader('token', localStorage.getItem('token'));
+                    },
+                    success: function(result) {
+                        thisPage.userLatestKejinList = result.data;
+                    },
+                    error: function(xMLHttpRequest, textStatus, errorThrown) {
+                        Swal.fire(
+                            {
+                                title: "服务器故障",
+                                text: '肯定是出了点什么问题，至于这个问题是什么，那就需要经过一系列的探究才能发现了，然后至于这个问题该怎么解决，就得考虑这个问题是如何发生的，然后再进行相应的修改，修改完后还需要进行相应的测试，只有确定没有任何问题了以后，诶，就可以把这个不知道是什么问题的问题改好了，真是简单呢！',
+                                icon: 'error',
+                                confirmButtonColor: '#5438dc'
+                            }
+                        )
+                    }
+                });
             }
         }
     })

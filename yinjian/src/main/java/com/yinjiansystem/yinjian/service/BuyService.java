@@ -51,4 +51,9 @@ public interface BuyService {
      */
     List<String> selectLatestGame();
 
+    /**
+     * 获取当前用户最近氪金记录
+     */
+    List<Buy> selectPersonalLatestBuy(String userName);
+
 }

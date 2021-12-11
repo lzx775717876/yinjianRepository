@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        
+        @@include("partials/title-meta.html", {"title": "宠物花销登记"})
+
+        <!-- Sweet Alert-->
+        <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+        @@include("partials/head-css.html")
+
+    </head>
+
+    <body data-sidebar="dark">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            @@include("partials/topbar.html")
+
+            @@include("partials/sidebar.html")
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div id="petRegist" v-cloak class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        @@include("partials/page-title.html", {"pagetitle": "宠物", "title": "宠物花销登记"})
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+        
+                                        <h4 class="card-title">又见到你了，铲屎官！</h4>
+                                        <p class="card-title-desc">介回你置办什么了？</p>
+        
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-1 col-form-label">我是谁？</label>
+                                            <div class="col-md-3">
+                                                <select v-model="petWho" class="form-control">
+                                                    <option selected></option>
+                                                    <option>路西</option>
+                                                    <option>洪哥</option>
+                                                    <option>阿鸡</option>
+                                                    <option>拓哥</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-1 col-form-label">置办了？</label>
+                                            <div class="col-md-3">
+                                                <input class="form-control" type="text" v-model="petItem" id="example-text-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-1 col-form-label">类别是？</label>
+                                            <div class="col-md-3">
+                                                <input class="form-control" type="text" v-model="petItem" id="example-text-input2">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-1 col-form-label">花费是？</label>
+                                            <div class="col-md-3">
+                                                <input class="form-control" type="number" v-model="petMoney" @input="moneyCheck">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-1 col-form-label">什么前儿置办的？</label>
+                                            <div class="col-md-3">
+                                                <input class="form-control" type="datetime-local" v-model="petTime">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-1 col-form-label">来说说你的故事吧！</label>
+                                            <div class="col-md-3">
+                                                <textarea class="form-control" rows="3" v-model="petRemark"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-3">
+                                                <button type="button" class="btn btn-primary waves-effect waves-light" @click="regist">
+                                                    走你！
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                @@include("partials/footer.html")
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        @@include("partials/right-sidebar.html")
+
+        @@include("partials/vendor-scripts.html")
+
+        <!-- bs custom file input plugin -->
+        <script src="assets/libs/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+        <!-- Sweet Alerts js -->
+        <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+        <script src="assets/js/pages/pet-regist.init.js"></script>
+
+        <script src="assets/js/app.js"></script>
+
+    </body>
+</html>

@@ -21,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/buy")
-@Api(value = "阴间氪金模块", tags = { "阴间氪金模块" })
+@Api(value = "伞兵氪金模块", tags = { "伞兵氪金模块" })
 public class BuyController {
 
     @Autowired
@@ -94,6 +94,15 @@ public class BuyController {
         BaseResult<String> br = new BaseResult<>();
         int result = buyService.deleteById(id);
         br.setSuccess(result == 1);
+        return br;
+    }
+
+    @ApiOperation(value = "当前用户最近氪金查询", notes = "当前用户最近氪金查询")
+    @RequestMapping(value = "/selectPersonalLatestBuy", produces = Constant.PRODUCES_JSON, method = RequestMethod.POST)
+    public BaseResult<List<Buy>> selectPersonalLatestBuy(@ApiParam(value = "用户名") @RequestBody Buy buy) {
+        BaseResult<List<Buy>> br = new BaseResult<>();
+        List<Buy> buys = buyService.selectPersonalLatestBuy(buy.getUserName());
+        br.setData(buys);
         return br;
     }
 

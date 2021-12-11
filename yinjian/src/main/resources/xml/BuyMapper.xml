@@ -6,4 +6,10 @@
         select gameName from buy where type = 0 group by gameName, createTime order by createTime desc;
     </select>
 
+    <select id="selectPersonalLatestBuy" resultType="com.yinjiansystem.yinjian.pojo.Buy" parameterType="String">
+        select * from buy
+        where userName = #{userName}
+        order by id desc, createTime desc LIMIT 10;
+    </select>
+
 </mapper>

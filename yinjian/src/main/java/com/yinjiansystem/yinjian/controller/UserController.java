@@ -28,7 +28,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/user")
-@Api(value = "阴间用户模块", tags = { "阴间用户模块" })
+@Api(value = "伞兵用户模块", tags = { "伞兵用户模块" })
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);

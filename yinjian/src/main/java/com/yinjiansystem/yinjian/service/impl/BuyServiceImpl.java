@@ -60,6 +60,12 @@ public class BuyServiceImpl implements BuyService {
     }
 
     @Override
+    public List<Buy> selectPersonalLatestBuy(String userName) {
+        List<Buy> buys = buyMapper.selectPersonalLatestBuy(userName);
+        return buys;
+    }
+
+    @Override
     public int insertBuy(Buy buy){
         try{
             if (buy.getCreateTime() == null) {

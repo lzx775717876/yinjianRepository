@@ -9,7 +9,14 @@
         <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
         @@include("partials/head-css.html")
-
+        <style>
+            .td-line-hold {
+                max-width: 280px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        </style>
     </head>
 
     <body data-sidebar="dark">
@@ -32,7 +39,7 @@
                         @@include("partials/page-title.html", {"pagetitle": "氪金", "title": "氪金登记"})
                         
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-lg-8">
                                 <div class="card">
                                     <div class="card-body">
         
@@ -40,8 +47,8 @@
                                         <p class="card-title-desc">介回你又氪什么了？</p>
         
                                         <div class="form-group row">
-                                            <label for="example-text-input" class="col-md-1 col-form-label">我是谁？</label>
-                                            <div class="col-md-3">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">我是谁？</label>
+                                            <div class="col-md-4">
                                                 <select v-model="kejinWho" class="form-control">
                                                     <option selected></option>
                                                     <option>路西</option>
@@ -52,14 +59,14 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="example-text-input" class="col-md-1 col-form-label">氪的玩意是？</label>
-                                            <div class="col-md-3">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">氪的玩意是？</label>
+                                            <div class="col-md-4">
                                                 <input class="form-control" type="text" v-model="kejinItem" id="example-text-input">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="example-text-input" class="col-md-1 col-form-label">快捷选择</label>
-                                            <div class="col-md-2">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">快捷选择</label>
+                                            <div class="col-md-3">
                                                 <button type="button" class="btn btn-primary waves-effect waves-light" @click="getLatestGame" data-toggle="modal" data-target=".bs-example-modal-center">
                                                     现有已氪的玩意 <i class="ri-arrow-right-line align-middle ml-2"></i>
                                                 </button>
@@ -82,8 +89,8 @@
 
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-1 col-form-label">实的还是虚的？</label>
-                                            <div class="col-md-5">
+                                            <label class="col-md-2 col-form-label">实的还是虚的？</label>
+                                            <div class="col-md-6">
                                                 <div>
                                                     <input class="mt-2" type="checkbox" id="switch1" switch="none" checked v-model="kejinType"/>
                                                     <label class="mt-2" for="switch1" data-on-label="实体" data-off-label="虚拟"></label>
@@ -91,20 +98,20 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="example-text-input" class="col-md-1 col-form-label">氪了多少？</label>
-                                            <div class="col-md-3">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">氪了多少？</label>
+                                            <div class="col-md-4">
                                                 <input class="form-control" type="number" v-model="kejinMoney" @input="moneyCheck">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-1 col-form-label">什么前儿氪的？</label>
-                                            <div class="col-md-3">
+                                            <label class="col-md-2 col-form-label">什么前儿氪的？</label>
+                                            <div class="col-md-4">
                                                 <input class="form-control" type="datetime-local" v-model="kejinTime">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-1 col-form-label">来说说你的故事吧！</label>
-                                            <div class="col-md-3">
+                                            <label class="col-md-2 col-form-label">来说说你的故事吧！</label>
+                                            <div class="col-md-4">
                                                 <textarea class="form-control" rows="3" v-model="kejinRemark"></textarea>
                                             </div>
                                         </div>
@@ -118,6 +125,39 @@
                                     </div>
                                 </div>
                             </div> <!-- end col -->
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">你最近氪了这些↓</h4>
+<!--                                        <p class="card-title-desc">For basic styling—light padding and-->
+<!--                                            only horizontal dividers—add the base class <code>.table</code> to any-->
+<!--                                            <code>&lt;table&gt;</code>.-->
+<!--                                        </p>-->
+
+                                        <div class="table-responsive">
+                                            <table class="table mb-3">
+
+                                                <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>游戏名</th>
+                                                    <th>所属类别</th>
+                                                    <th>氪金数</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr v-for="(item, index) in userLatestKejinList">
+                                                    <th scope="row">{{index + 1}}</th>
+                                                    <td class="td-line-hold">{{item.gameName}}</td>
+                                                    <td>{{item.type == 0 ? '虚拟' : '实体'}}</td>
+                                                    <td>{{item.money}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- end row -->
                     </div> <!-- container-fluid -->

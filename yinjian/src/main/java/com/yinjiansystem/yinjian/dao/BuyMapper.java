@@ -3,6 +3,7 @@ package com.yinjiansystem.yinjian.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yinjiansystem.yinjian.pojo.Buy;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ import java.util.List;
 @Mapper
 public interface BuyMapper extends BaseMapper<Buy> {
     List<String> selectLatestGame();
+
+    List<Buy> selectPersonalLatestBuy(@Param("userName") String userName);
 }

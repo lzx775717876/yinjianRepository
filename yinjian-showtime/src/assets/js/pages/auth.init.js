@@ -9,10 +9,15 @@ $(document).ready(function () {
             }
         )
     });
-
+    $(document).keypress(function(event){
+        if (event.keyCode == 13) {
+            userLogin();
+        }
+    })
 })
 
 function userLogin() {
+    console.log("haha");
     let param = {
         userName: $('#username').val(),
         password: $('#userpassword').val()

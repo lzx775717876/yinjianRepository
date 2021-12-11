@@ -40,7 +40,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题
-                .title("阴间服务API")
+                .title("伞兵服务API")
                 //创建人
                 .contact(new Contact("平台组", "", ""))
                 //版本号

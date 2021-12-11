@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/history")
-@Api(value = "阴间历史模块", tags = { "阴间历史模块" })
+@Api(value = "伞兵历史模块", tags = { "伞兵历史模块" })
 public class HistoryController {
 
     @Autowired
