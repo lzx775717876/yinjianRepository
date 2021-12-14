@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @Description 通用返回数据格式
@@ -21,7 +20,7 @@ public class BaseResult<T>  implements Serializable{
 	private String msg;
 
 	@ApiModelProperty("返回结果的时间戳")
-	public long timeStamp = new Date().getTime();
+	public long timeStamp = System.currentTimeMillis();
 
 	@ApiModelProperty("数据内容")
 	private T data;

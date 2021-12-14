@@ -9,8 +9,9 @@ import com.yinjiansystem.yinjian.validate.DateValue;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @Description 历史 Controller层
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "伞兵历史模块", tags = { "伞兵历史模块" })
 public class HistoryController {
 
-    @Autowired
+    @Resource
     private HistoryService historyService;
 
     @ApiOperation(value = "分页查询", notes = "分页查询")

@@ -18,10 +18,10 @@ public class Pet extends BaseModel {
     @ApiModelProperty(value = "用户名")
     private String userName;
 
-    @ApiModelProperty(value = "宠物花销")
+    @ApiModelProperty(value = "宠物花销名称")
     private String petItem;
 
-    @ApiModelProperty(value = "花销类型")
+    @ApiModelProperty(value = "宠物花销类型")
     private String itemType;
 
     @ApiModelProperty(value = "金额")

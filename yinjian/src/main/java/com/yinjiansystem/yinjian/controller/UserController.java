@@ -1,7 +1,5 @@
 package com.yinjiansystem.yinjian.controller;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yinjiansystem.yinjian.pojo.BaseResult;
 import com.yinjiansystem.yinjian.pojo.User;
@@ -13,9 +11,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -33,7 +31,7 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
+    @Resource
     private UserService userService;
 
     @ApiOperation(value = "分页查询", notes = "分页查询")
@@ -83,14 +81,13 @@ public class UserController {
 
     @ApiOperation(value = "用户登录", notes = "用户登录")
     @RequestMapping(value = "/login", produces = Constant.PRODUCES_JSON, method = RequestMethod.POST)
-    public Map userLogin(@ApiParam(value = "用户名或邮箱", required = true) @RequestBody User user) {
+    public HashMap<String, Object> userLogin(@ApiParam(value = "用户名或邮箱", required = true) @RequestBody User user) {
         HashMap<String, Object> resultMap = new HashMap<>();
         User loginUser = userService.userLogin(user.getUserName(), user.getPassword());
         if (loginUser == null) {
             resultMap.put("error", "error");
             return resultMap;
         }
-        HashMap<String,Object> map = new HashMap<>();
         Calendar instance = Calendar.getInstance();
         instance.add(Calendar.SECOND,60);
         try {
@@ -109,7 +106,7 @@ public class UserController {
 
     @ApiOperation(value = "获取用户信息", notes = "获取用户信息")
     @RequestMapping(value = "/getUserInfo", produces = Constant.PRODUCES_JSON, method = RequestMethod.POST)
-    public Map getUserInfo(@ApiParam(value = "认证token", required = true) @RequestBody Map tokenMap) {
+    public HashMap<String, Object> getUserInfo(@ApiParam(value = "认证token", required = true) @RequestBody HashMap<String, Object> tokenMap) {
         HashMap<String, Object> resultMap = new HashMap<>();
         User userInfo = userService.getUserInfo(tokenMap.get("token").toString());
         resultMap.put("userInfo", userInfo);

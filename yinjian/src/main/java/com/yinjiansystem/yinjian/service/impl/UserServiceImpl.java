@@ -1,6 +1,5 @@
 package com.yinjiansystem.yinjian.service.impl;
 
-import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -10,9 +9,9 @@ import com.yinjiansystem.yinjian.pojo.User;
 import com.yinjiansystem.yinjian.service.UserService;
 import com.yinjiansystem.yinjian.utils.JWTUtils;
 import com.yinjiansystem.yinjian.utils.Utils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
@@ -24,7 +23,7 @@ import java.util.Date;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override
@@ -72,11 +71,7 @@ public class UserServiceImpl implements UserService {
         } else {
             return null;
         }
-        User user = userMapper.selectOne(query);
-        if (user != null) {
-            return user;
-        }
-        return null;
+        return userMapper.selectOne(query);
     }
 
     @Override
@@ -88,10 +83,7 @@ public class UserServiceImpl implements UserService {
             query.eq("userName", userName);
             User user = userMapper.selectOne(query);
             user.setPassword(null);
-            if (user != null) {
-                return user;
-            }
-            return null;
+            return user;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

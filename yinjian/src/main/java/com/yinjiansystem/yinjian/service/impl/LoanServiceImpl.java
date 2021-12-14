@@ -7,9 +7,9 @@ import com.yinjiansystem.yinjian.dao.LoanMapper;
 import com.yinjiansystem.yinjian.pojo.Loan;
 import com.yinjiansystem.yinjian.service.LoanService;
 import com.yinjiansystem.yinjian.utils.Utils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -20,7 +20,7 @@ import java.util.Date;
 @Service
 public class LoanServiceImpl implements LoanService {
 
-    @Autowired
+    @Resource
     private LoanMapper loanMapper;
 
     @Override

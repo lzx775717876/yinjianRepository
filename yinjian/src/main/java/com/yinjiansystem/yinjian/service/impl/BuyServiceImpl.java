@@ -7,9 +7,9 @@ import com.yinjiansystem.yinjian.dao.BuyMapper;
 import com.yinjiansystem.yinjian.pojo.Buy;
 import com.yinjiansystem.yinjian.service.BuyService;
 import com.yinjiansystem.yinjian.utils.Utils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class BuyServiceImpl implements BuyService {
 
-    @Autowired
+    @Resource
     private BuyMapper buyMapper;
 
     @Override
@@ -61,22 +61,16 @@ public class BuyServiceImpl implements BuyService {
 
     @Override
     public List<Buy> selectPersonalLatestBuy(String userName) {
-        List<Buy> buys = buyMapper.selectPersonalLatestBuy(userName);
-        return buys;
+        return buyMapper.selectPersonalLatestBuy(userName);
     }
 
     @Override
     public int insertBuy(Buy buy){
-        try{
-            if (buy.getCreateTime() == null) {
-                buy.setCreateTime(new Date());
-            }
-            buy.setUpdateTime(new Date());
-            return buyMapper.insert(buy);
-        }catch (Exception e) {
-            e.printStackTrace();
+        if (buy.getCreateTime() == null) {
+            buy.setCreateTime(new Date());
         }
-        return 0;
+        buy.setUpdateTime(new Date());
+        return buyMapper.insert(buy);
     }
 
     @Override

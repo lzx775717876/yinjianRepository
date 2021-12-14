@@ -7,9 +7,9 @@ import com.yinjiansystem.yinjian.dao.HistoryMapper;
 import com.yinjiansystem.yinjian.pojo.History;
 import com.yinjiansystem.yinjian.service.HistoryService;
 import com.yinjiansystem.yinjian.utils.Utils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -20,7 +20,7 @@ import java.util.Date;
 @Service
 public class HistoryServiceImpl implements HistoryService {
 
-    @Autowired
+    @Resource
     private HistoryMapper historyMapper;
 
     @Override

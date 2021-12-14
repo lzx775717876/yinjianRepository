@@ -1,14 +1,12 @@
 package com.yinjiansystem.yinjian.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.yinjiansystem.yinjian.dao.BuyMapper;
 import com.yinjiansystem.yinjian.dao.PetMapper;
-import com.yinjiansystem.yinjian.pojo.Buy;
 import com.yinjiansystem.yinjian.pojo.Pet;
 import com.yinjiansystem.yinjian.service.PetService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +18,7 @@ import java.util.List;
 @Service
 public class PetServiceImpl implements PetService {
 
-    @Autowired
+    @Resource
     private PetMapper petMapper;
 
     @Override
@@ -30,16 +28,11 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public int insertPet(Pet pet) {
-        try {
-            if (pet.getCreateTime() == null) {
-                pet.setCreateTime(new Date());
-            }
-            pet.setUpdateTime(new Date());
-            return petMapper.insert(pet);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (pet.getCreateTime() == null) {
+            pet.setCreateTime(new Date());
         }
-        return 0;
+        pet.setUpdateTime(new Date());
+        return petMapper.insert(pet);
     }
 
 }

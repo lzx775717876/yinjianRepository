@@ -1,6 +1,5 @@
 package com.yinjiansystem.yinjian.service;
 
-import com.yinjiansystem.yinjian.pojo.Buy;
 import com.yinjiansystem.yinjian.pojo.Pet;
 
 import java.util.List;

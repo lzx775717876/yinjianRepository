@@ -1,19 +1,18 @@
 package com.yinjiansystem.yinjian.controller;
 
 import com.yinjiansystem.yinjian.pojo.BaseResult;
-import com.yinjiansystem.yinjian.pojo.Buy;
 import com.yinjiansystem.yinjian.pojo.Pet;
 import com.yinjiansystem.yinjian.service.PetService;
 import com.yinjiansystem.yinjian.utils.Constant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -26,7 +25,7 @@ import java.util.List;
 @Api(value = "宠物模块", tags = {"宠物模块"})
 public class PetController {
 
-    @Autowired
+    @Resource
     private PetService petService;
 
     @ApiOperation(value = "全表查询", notes = "全表查询")

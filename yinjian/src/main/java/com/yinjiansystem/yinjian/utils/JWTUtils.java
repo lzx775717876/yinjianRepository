@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Map;
 
 public class JWTUtils {
-    private static String SIGNATURE = "token!@#$%^7890";
+    private static final String SIGNATURE = "token!@#$%^7890";
 
     /**
      * 生成token
@@ -19,18 +19,16 @@ public class JWTUtils {
      */
     public static String getToken(Map<String,String> map) throws UnsupportedEncodingException {
         JWTCreator.Builder builder = JWT.create();
-        map.forEach((k,v)->{
-            builder.withClaim(k,v);
-        });
+        map.forEach(builder::withClaim);
         Calendar instance = Calendar.getInstance();
         instance.add(Calendar.SECOND,24*60*60);
         builder.withExpiresAt(instance.getTime());
-        return builder.sign(Algorithm.HMAC256(SIGNATURE)).toString();
+        return builder.sign(Algorithm.HMAC256(SIGNATURE));
     }
 
     /**
      * 验证token
-     * @param token
+     * @param token token
      */
     public static void verify(String token) throws UnsupportedEncodingException {
         JWT.require(Algorithm.HMAC256(SIGNATURE)).build().verify(token);
@@ -38,7 +36,7 @@ public class JWTUtils {
 
     /**
      * 获取token中payload
-     * @param token
+     * @param token token
      * @return
      */
     public static DecodedJWT getToken(String token) throws UnsupportedEncodingException {

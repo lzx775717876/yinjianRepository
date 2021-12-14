@@ -9,9 +9,9 @@ import com.yinjiansystem.yinjian.validate.DateValue;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -24,7 +24,7 @@ import java.util.List;
 @Api(value = "伞兵氪金模块", tags = { "伞兵氪金模块" })
 public class BuyController {
 
-    @Autowired
+    @Resource
     private BuyService buyService;
 
     @ApiOperation(value = "分页查询", notes = "分页查询")
